@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 * {
-  scroll-behavior: smooth;
   box-sizing: border-box;
 }
 
@@ -21,17 +20,47 @@ body {
   overflow-x: hidden;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #081020; }
+::-webkit-scrollbar-thumb { background: #1e2d4a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7b5cff; }
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-::-webkit-scrollbar-track {
-  background: #081020;
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  gap: 4rem;
 }
-::-webkit-scrollbar-thumb {
-  background: #1e2d4a;
-  border-radius: 3px;
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Ping dot ── */
+@keyframes ping-slow {
+  0%, 100% { transform: scale(1);   opacity: 0.8; }
+  50%       { transform: scale(1.9); opacity: 0; }
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #7b5cff;
+.ping-slow { animation: ping-slow 2s ease-in-out infinite; }
+
+/* ── Gradient border spin (featured pricing card) ── */
+@keyframes spin-gradient {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.gradient-border-spin::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(#FF5A4D, #FFB020, #7B5CFF, #FF5A4D);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin-gradient 4s linear infinite;
+  z-index: 0;
 }
