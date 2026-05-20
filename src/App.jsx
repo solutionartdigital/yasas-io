@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import ShaderBackground from "@/components/ui/shader-background";
 import {
   motion,
   AnimatePresence,
@@ -1142,7 +1143,14 @@ export default function YasasLandingPage() {
     <div className="min-h-screen overflow-x-hidden bg-[#081020] font-sans text-white selection:bg-[#FF5A4D]/40">
       <ScrollProgress />
       <CursorGlow />
-      <AnimatedBackground />
+      <ShaderBackground />
+      {/* Overlay: dark vignette + grid texture so text stays readable over shader */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,transparent_40%,rgba(8,16,32,0.72)_100%)]" />
+        <div className="absolute inset-0 opacity-[0.03] [background-image:linear-gradient(rgba(255,255,255,.7)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.7)_1px,transparent_1px)] [background-size:48px_48px]" />
+        <motion.div className="absolute left-[-25%] top-[58%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent opacity-20" animate={{ x: ["-6%", "6%", "-6%"] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }} />
+        <motion.div className="absolute left-[-25%] top-[61%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#7B5CFF] to-transparent opacity-15" animate={{ x: ["6%", "-6%", "6%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+      </div>
 
       {/* ── HEADER ── */}
       <header className="relative z-40 mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 sm:py-6">
