@@ -42,6 +42,45 @@ const copy = {
       ["CRM & Dashboards", "Simple tracking for leads, calls, conversations, bookings, pipeline value and next actions."],
     ],
     learn: "Learn more",
+    learnModal: { industries: "Industries", timeline: "Timeline", cta: "Get a free audit" },
+    serviceDetails: [
+      {
+        long: "A 24/7 AI assistant embedded on your website that instantly engages visitors, answers FAQs, qualifies leads and routes them to book — without any human needed.",
+        features: ["Answers FAQs automatically, day or night", "Qualifies visitors with smart questions", "Collects name, email, phone and intent", "Routes to booking link or contact form", "Escalates to human agent when needed", "Custom branded persona and tone"],
+        industries: "HVAC · Dental · Real Estate · Legal · Insurance · Coaching",
+        timeline: "3–5 business days",
+      },
+      {
+        long: "Turn WhatsApp into your best sales channel. Intelligent conversation flows respond instantly, guide customers, send reminders and qualify leads around the clock.",
+        features: ["Instant auto-replies to new inquiries", "Lead qualification conversation flows", "Appointment reminders (24h + 1h before)", "Hot lead alerts to your team", "Broadcast messages for promotions", "Multi-step flows with decision logic"],
+        industries: "Dental · HVAC · Real Estate · Restaurants · Coaches · Any WhatsApp-active business",
+        timeline: "4–7 business days",
+      },
+      {
+        long: "Never miss a call again. AI voice agents answer 24/7, speak naturally, explain your services, qualify callers and book appointments — all without a receptionist.",
+        features: ["Answers calls 24/7, including after hours", "Natural conversational speech, not robotic IVR", "Qualifies callers and collects key details", "Books directly into your calendar", "Sends SMS follow-up after every call", "Call transcripts and recordings delivered to you"],
+        industries: "HVAC · Dental · Medical · Legal · Real Estate · Home Services",
+        timeline: "5–10 business days (script + testing)",
+      },
+      {
+        long: "Connect every part of your business — forms, chats, calls, email, CRM, calendar and billing — into one automated workflow so nothing falls through the cracks.",
+        features: ["Connects tools via Make, Zapier or n8n", "Auto-creates CRM contacts from any source", "Triggers email and SMS sequences on actions", "Notifies your team via Slack, WhatsApp or email", "Automates onboarding and invoice workflows", "Custom logic built for your specific process"],
+        industries: "All industries with multi-step sales or service processes",
+        timeline: "7–14 business days",
+      },
+      {
+        long: "Remove friction from scheduling. Smart booking flows connect with Calendly or Google Calendar and send automatic confirmations, reminders and follow-ups.",
+        features: ["Connects to Calendly or Google Calendar", "Qualification questions before booking", "Automatic confirmation emails and SMS", "Pre-appointment reminders (24h + 1h before)", "No-show follow-up automation", "Integrates with your CRM pipeline"],
+        industries: "Dental · Medical · Legal · Coaching · Consulting · Home Services",
+        timeline: "3–5 business days",
+      },
+      {
+        long: "Know exactly where every lead and client stands. Visual pipelines and dashboards give you a real-time view of your business — simple, powerful, not overwhelming.",
+        features: ["Visual pipeline by stage (lead → client)", "Tracks source, status and next action", "Call, chat and WhatsApp activity log", "Revenue forecasting by pipeline value", "Team assignment and notifications", "Weekly performance summary reports"],
+        industries: "Any service business with a sales or client pipeline",
+        timeline: "3–5 business days",
+      },
+    ],
     howEyebrow: "How it works",
     howTitle: "Simple. Strategic.",
     howAccent: "Scalable.",
@@ -95,15 +134,39 @@ const copy = {
       times: ["Today afternoon", "Tomorrow morning", "Tomorrow afternoon", "This week"],
       submit: "Request audit",
       booking: "Perfect. I can help you request a free AI audit. Please complete the short form below and we'll confirm availability.",
-      price: "Launch packages start at $497 for a Starter Setup, $997 for a Client Capture System, and $1,500+ for complete automation systems.",
-      build: "We build complete AI automation systems: website chatbots, WhatsApp automations, AI voice agents, CRM pipelines, booking flows, follow-up sequences and dashboards.",
-      wa: "Yes. We create WhatsApp flows that answer common questions, collect lead details, send reminders, notify your team and guide customers to book an appointment.",
-      voice: "Yes. We set up AI voice agents that answer calls naturally, ask qualifying questions, explain services, capture customer details and book appointments.",
-      calendar: "Yes. The system can send users to a Calendly/Google Calendar booking link or connect through Make/Zapier to your CRM and calendar.",
-      guarantee: "We don't guarantee revenue. We improve the system that captures, responds and follows up with leads.",
-      fallback: "Good question. yasas.io helps businesses stop losing leads by responding faster and following up automatically. Would you like to book a free audit?",
-      missing: "Please complete all fields so we can request your audit properly.",
-      done: "Done — your audit request is ready. In the real version, this would be sent to your email/CRM and synced with Calendly or Google Calendar.",
+      price: "Launch packages start at $497 (AI Starter Setup), $997 (Client Capture System with landing page + chatbot + CRM + booking), and $1,500+ for the full Automation Growth System with WhatsApp, voice agent and custom integrations. Which one fits your stage?",
+      build: "We build complete AI automation systems: website chatbots, WhatsApp automations, AI voice agents, CRM pipelines, booking flows, follow-up sequences and dashboards. All connected, all working 24/7. What's your biggest pain point right now?",
+      wa: "Our WhatsApp flows do a lot: instant replies to new inquiries, multi-step lead qualification, appointment reminders (24h + 1h before), hot-lead alerts to your team, broadcast messages for promos, and no-show follow-ups. Everything connects to your CRM and calendar.",
+      voice: "Our AI voice agents answer calls in under 2 seconds, 24/7. They speak naturally (not robotic IVR), introduce your business, answer FAQs, qualify the caller, collect their details and book appointments into your calendar. After each call you get a transcript and SMS summary.",
+      calendar: "Yes. We connect Calendly or Google Calendar with smart qualification questions before booking. After booking: automatic confirmation email + SMS, reminders at 24h and 1h, post-appointment follow-up, and no-show re-engagement — all synced with your CRM.",
+      guarantee: "We don't promise guaranteed revenue. What we do guarantee is a system built to capture every lead, respond instantly, and follow up automatically — so you stop losing opportunities to slow response times or missed calls.",
+      chatbotInfo: "We build custom AI chat assistants that live on your website. They greet visitors, answer FAQs, qualify leads with smart questions, collect contact info and route people to book or request a quote — 24/7, with no manual effort. Fully branded to match your business.",
+      automationsInfo: "We build end-to-end workflows using Make, Zapier or n8n. When a new lead comes in from any source, it's automatically added to your CRM, triggers an email/WhatsApp sequence, notifies your team and schedules a follow-up. We can automate intake, onboarding, invoicing, reminders and reporting.",
+      bookingSystem: "Our booking flows remove all friction from scheduling. We connect Calendly or Google Calendar with qualification questions — so only real prospects book. Then: automatic confirmation email + SMS, 24h reminder, 1h reminder, post-appointment follow-up and no-show re-engagement. All synced with your CRM.",
+      crmInfo: "We set up a simple visual CRM pipeline that tracks every lead from first contact to closed client: source, status, last action, pipeline value and next steps. It integrates with your chat, WhatsApp, voice agent and booking system so everything is in one place. No enterprise complexity.",
+      industries: "We work with service businesses across many sectors: HVAC and home services, dental and medical practices, real estate agents and brokerages, law firms, insurance agencies, coaches and consultants. If your business handles leads, appointments or client communication — we can automate it. What industry are you in?",
+      timeline: "Most systems launch in 5–14 business days: AI Chat (3–5 days), WhatsApp flows (4–7 days), Booking system (3–5 days), Voice agent (5–10 days, includes scripting + testing), Full automation stack (7–14 days). We move fast and keep you updated throughout.",
+      support: "All packages include a video walkthrough and full documentation. The Automation Growth System includes 15 days of direct support. After that, we offer monthly maintenance retainers — new flows, script updates, seasonal campaigns, additional integrations. We're a long-term partner, not a one-time vendor.",
+      integrations: "We integrate with: Calendly, Google Calendar, HubSpot, GoHighLevel, Airtable, Notion, Slack, WhatsApp Business, Gmail, Mailchimp, Stripe, Twilio, OpenAI, ElevenLabs, Make, Zapier, n8n and more. If you use a specific tool, tell us — we can almost always connect it.",
+      roi: "Our clients typically see: 3x more leads captured vs. missing them after hours, 2x more booked calls vs. manual follow-up, and 40–60% less time on admin tasks. The chatbot and voice agent alone often pay for themselves within the first 30 days by capturing leads that would otherwise be lost.",
+      howItWorks: "Step 1 — Free AI Audit: we review your current process and design your system. Step 2 — Build: we create your chatbot, WhatsApp flows, voice agent, CRM and booking integration. Step 3 — Launch & Train: we launch, test everything together and hand over full control. Most clients see results within the first week.",
+      hvac: "For HVAC businesses: our AI voice agent answers calls 24/7 (especially after hours and weekends), qualifies service calls vs. estimates, books technician visits and sends automatic reminders. WhatsApp flows follow up on quotes and request reviews. You'll never miss a service call again.",
+      dental: "For dental offices: AI chat handles appointment requests 24/7, answers patient FAQs and collects intake info. WhatsApp sends appointment reminders, 6-month recall messages and review requests. Voice agents answer calls when the front desk is busy. Patients get served faster, staff stays focused.",
+      realEstate: "For real estate: our AI chat qualifies buyer and seller leads (location, budget, timeline), books property tours and auto-follows up on inactive leads. WhatsApp flows nurture prospects through long sales cycles. Voice agents answer listing inquiries at any hour — so no lead goes cold.",
+      legal: "For law firms: AI chat qualifies potential clients (area of law, case type, urgency), collects initial info and books consultations — while screening out non-qualified inquiries. Voice agents handle after-hours calls professionally. WhatsApp follow-ups keep prospects engaged while they decide.",
+      fallback: "Good question. yasas.io helps businesses stop losing leads by responding faster and following up automatically. Want to know about a specific service — chatbots, WhatsApp, voice agents? Or book a free audit?",
+      missing: "Please fill in all fields so we can confirm your audit slot.",
+      done: "Done — your audit request is ready. In production this is sent to your email and CRM, and synced with Calendly or Google Calendar for instant scheduling.",
+      phonePlaceholder: "Phone number",
+      quickAfterBuild: ["Tell me about chatbots", "WhatsApp automation?", "AI voice agents?", "How much does it cost?"],
+      quickAfterPrice: ["What's in the $497 plan?", "Client Capture details?", "How long to launch?", "Book free audit"],
+      quickAfterVoice: ["Voice for HVAC?", "Voice for dental?", "WhatsApp automation?", "Book free audit"],
+      quickAfterWa: ["WhatsApp for dental?", "What about voice agents?", "Pricing?", "Book free audit"],
+      quickAfterIndustries: ["Tell me about HVAC", "Dental automation?", "Real estate?", "Book free audit"],
+      quickAfterTimeline: ["What's included?", "How much does it cost?", "Book free audit", "What industries?"],
+      quickAfterSupport: ["How long to launch?", "Pricing?", "Book free audit", "What integrations?"],
+      quickAfterIntegrations: ["WhatsApp automation?", "AI voice agents?", "Pricing?", "Book free audit"],
+      quickAfterRoi: ["How does it work?", "Pricing?", "Book free audit", "What integrations?"],
     },
     visual: {
       pipeline: "Lead Pipeline", lead: "New Lead", follow: "AI Follow-up", booked: "Booked Call",
@@ -138,6 +201,45 @@ const copy = {
       ["CRM y dashboards", "Seguimiento simple de leads, llamadas, conversaciones, citas, valor del pipeline y próximas acciones."],
     ],
     learn: "Ver más",
+    learnModal: { industries: "Sectores", timeline: "Tiempo de entrega", cta: "Pedir auditoría gratis" },
+    serviceDetails: [
+      {
+        long: "Un asistente IA disponible 24/7 en tu sitio web que responde visitantes al instante, califica leads y los guía a reservar — sin necesidad de personal humano.",
+        features: ["Responde preguntas frecuentes automáticamente", "Califica visitantes con preguntas inteligentes", "Captura nombre, email, teléfono e intención", "Dirige a formulario de cita o contacto", "Escala a agente humano cuando sea necesario", "Persona personalizada con tono de tu marca"],
+        industries: "HVAC · Dental · Inmobiliaria · Legal · Seguros · Coaching",
+        timeline: "3–5 días hábiles",
+      },
+      {
+        long: "Convierte WhatsApp en tu mejor canal de ventas. Flujos de conversación inteligentes responden al instante, guían al cliente, envían recordatorios y califican leads las 24 horas.",
+        features: ["Respuestas automáticas a nuevas consultas", "Secuencias de calificación de leads", "Recordatorios de cita (24h + 1h antes)", "Alertas de leads calientes al equipo", "Mensajes broadcast para promociones", "Flujos con lógica de decisión"],
+        industries: "Dental · HVAC · Inmobiliaria · Restaurantes · Coaches · Cualquier negocio activo en WhatsApp",
+        timeline: "4–7 días hábiles",
+      },
+      {
+        long: "Nunca pierdas una llamada. Los agentes de voz IA responden 24/7, hablan de forma natural, explican tus servicios, califican al cliente y agendan citas — sin recepcionista.",
+        features: ["Responde llamadas 24/7, incluso fuera de horario", "Conversación natural, no menús IVR robóticos", "Califica al cliente y recoge sus datos", "Agenda directamente en tu calendario", "Envía SMS de seguimiento después de cada llamada", "Transcripciones y grabaciones de cada llamada"],
+        industries: "HVAC · Dental · Médico · Legal · Inmobiliaria · Servicios para el hogar",
+        timeline: "5–10 días hábiles (incluye scripts + pruebas)",
+      },
+      {
+        long: "Conecta cada parte de tu negocio — formularios, chats, llamadas, email, CRM, calendario y facturación — en un flujo automatizado de punta a punta.",
+        features: ["Conecta herramientas con Make, Zapier o n8n", "Crea contactos en CRM automáticamente", "Activa secuencias de email y WhatsApp", "Notifica a tu equipo por Slack, WhatsApp o email", "Automatiza onboarding y facturación", "Lógica personalizada para tu proceso específico"],
+        industries: "Todos los sectores con procesos de venta o servicio en múltiples pasos",
+        timeline: "7–14 días hábiles",
+      },
+      {
+        long: "Elimina la fricción al agendar. Flujos inteligentes conectados con Calendly o Google Calendar con confirmaciones, recordatorios y seguimientos automáticos.",
+        features: ["Conecta con Calendly o Google Calendar", "Preguntas de calificación antes de agendar", "Confirmación automática por email y SMS", "Recordatorios (24h + 1h antes de la cita)", "Seguimiento automático a no-shows", "Integrado con tu CRM"],
+        industries: "Dental · Médico · Legal · Coaching · Consultoría · Servicios para el hogar",
+        timeline: "3–5 días hábiles",
+      },
+      {
+        long: "Sabe exactamente en qué estado está cada lead y cliente. Pipelines visuales y dashboards que te dan visibilidad en tiempo real de tu negocio — simple, no abrumador.",
+        features: ["Pipeline visual por etapa (lead → cliente)", "Rastrea fuente, estado y próxima acción", "Historial de llamadas, chat y WhatsApp", "Proyección de ingresos por valor del pipeline", "Asignación de equipo y notificaciones", "Reportes semanales de desempeño"],
+        industries: "Cualquier negocio de servicios con pipeline de ventas o clientes",
+        timeline: "3–5 días hábiles",
+      },
+    ],
     howEyebrow: "Cómo funciona",
     howTitle: "Simple. Estratégico.",
     howAccent: "Escalable.",
@@ -190,16 +292,40 @@ const copy = {
       name: "Nombre", email: "Email", business: "Negocio / web", time: "Horario preferido",
       times: ["Hoy en la tarde", "Mañana en la mañana", "Mañana en la tarde", "Esta semana"],
       submit: "Pedir auditoría",
-      booking: "Perfecto. Te ayudo a pedir una auditoría IA gratis. Completa este formulario corto.",
-      price: "Los paquetes empiezan en $497 para Starter Setup, $997 para Client Capture System y $1,500+ para sistemas completos.",
-      build: "Creamos sistemas completos: chatbots web, automatización de WhatsApp, agentes de voz IA, CRM, agenda y seguimiento automático.",
-      wa: "Sí. Creamos flujos de WhatsApp que responden dudas, recogen datos, envían recordatorios y guían al cliente a agendar.",
-      voice: "Sí. Configuramos agentes de voz IA que responden llamadas de forma natural, hacen preguntas y agendan citas.",
-      calendar: "Sí. El sistema puede conectarse con Calendly, Google Calendar o tu CRM vía Make/Zapier.",
-      guarantee: "No garantizamos ingresos. Mejoramos el sistema que captura y da seguimiento a leads.",
-      fallback: "Buena pregunta. yasas.io ayuda a dejar de perder leads respondiendo más rápido. ¿Quieres agendar una auditoría gratis?",
-      missing: "Por favor completa todos los campos para solicitar tu auditoría.",
-      done: "Listo — tu solicitud quedó preparada. En la versión real se enviaría a tu email/CRM y se sincronizaría con tu calendario.",
+      booking: "Perfecto. Te ayudo a pedir una auditoría IA gratis. Completa este formulario corto y confirmamos disponibilidad.",
+      price: "Los paquetes empiezan en $497 (AI Starter Setup), $997 (Client Capture System con landing + chatbot + CRM + agenda) y $1,500+ para el sistema completo con WhatsApp, agente de voz e integraciones personalizadas. ¿Cuál encaja con tu etapa?",
+      build: "Creamos sistemas completos de automatización con IA: chatbots web, automatización de WhatsApp, agentes de voz, CRM, flujos de agenda y seguimiento automático. Todo conectado, todo funcionando 24/7. ¿Cuál es tu mayor dolor ahora mismo?",
+      wa: "Nuestros flujos de WhatsApp hacen mucho: respuestas instantáneas a nuevas consultas, calificación de leads en múltiples pasos, recordatorios de cita (24h + 1h antes), alertas de leads calientes al equipo, mensajes broadcast y seguimiento a no-shows. Todo conectado a tu CRM y calendario.",
+      voice: "Nuestros agentes de voz IA responden llamadas en menos de 2 segundos, 24/7. Hablan de forma natural (no menús IVR), presentan tu negocio, responden preguntas, califican al cliente y agendan citas en tu calendario. Después de cada llamada recibes transcripción y resumen por SMS.",
+      calendar: "Sí. Conectamos Calendly o Google Calendar con preguntas de calificación antes de agendar. Después: confirmación por email + SMS, recordatorio 24h, recordatorio 1h, seguimiento post-cita y reactivación de no-shows. Todo sincronizado con tu CRM.",
+      guarantee: "No prometemos ingresos garantizados. Lo que sí garantizamos es un sistema que captura cada lead, responde al instante y da seguimiento automático — para que dejes de perder oportunidades por respuesta lenta o llamadas perdidas.",
+      chatbotInfo: "Creamos asistentes de chat IA personalizados que viven en tu sitio web. Saludan visitantes, responden preguntas frecuentes, califican leads con preguntas inteligentes, recopilan datos de contacto y los dirigen a reservar o pedir presupuesto — 24/7, sin esfuerzo manual.",
+      automationsInfo: "Creamos flujos de punta a punta con Make, Zapier o n8n. Cuando llega un nuevo lead de cualquier fuente, se agrega automáticamente al CRM, activa una secuencia de email/WhatsApp, notifica al equipo y agenda un seguimiento. Automatizamos captación, onboarding, facturación y reportes.",
+      bookingSystem: "Nuestros flujos de agenda eliminan toda la fricción al reservar. Conectamos Calendly o Google Calendar con preguntas de calificación. Luego: confirmación automática por email + SMS, recordatorio 24h antes, recordatorio 1h antes, seguimiento post-cita y reactivación de no-shows.",
+      crmInfo: "Configuramos un CRM visual simple que rastrea cada lead desde el primer contacto hasta cliente cerrado. Ves fuente, estado, última acción, valor del pipeline y próximos pasos. Se integra con tu chat, WhatsApp, agente de voz y sistema de agenda — todo en un lugar.",
+      industries: "Trabajamos con negocios de servicios en muchos sectores: HVAC y servicios para el hogar, consultorios dentales y médicos, agentes inmobiliarios, despachos legales, agencias de seguros, coaches y consultores. Si tu negocio maneja leads, citas o comunicación con clientes — podemos automatizarlo. ¿En qué sector estás?",
+      timeline: "La mayoría se lanza en 5–14 días hábiles: Chat IA (3–5 días), Flujos de WhatsApp (4–7 días), Sistema de agenda (3–5 días), Agente de voz (5–10 días, incluye scripts + pruebas), Stack completo (7–14 días). Avanzamos rápido y te mantenemos informado en todo momento.",
+      support: "Todos los paquetes incluyen video tutorial y documentación completa. El Automation Growth System incluye 15 días de soporte directo. Después ofrecemos mantenimiento mensual: nuevos flujos, actualizaciones de scripts, campañas estacionales e integraciones adicionales. Somos un socio a largo plazo.",
+      integrations: "Integramos con: Calendly, Google Calendar, HubSpot, GoHighLevel, Airtable, Notion, Slack, WhatsApp Business, Gmail, Mailchimp, Stripe, Twilio, OpenAI, ElevenLabs, Make, Zapier, n8n y más. Si usas alguna herramienta específica, dinos — casi siempre podemos conectarla.",
+      roi: "Nuestros clientes suelen ver: 3x más leads capturados vs. perderlos fuera de horario, 2x más citas agendadas vs. seguimiento manual, y 40–60% menos tiempo en tareas administrativas. El chatbot y el agente de voz suelen pagar su costo en los primeros 30 días.",
+      howItWorks: "Paso 1 — Auditoría gratuita: revisamos tu proceso actual y diseñamos tu sistema. Paso 2 — Construcción: creamos tu chatbot, flujos de WhatsApp, agente de voz, CRM e integración de agenda. Paso 3 — Lanzamiento: lanzamos, probamos todo juntos y te entregamos control total. La mayoría ve resultados en la primera semana.",
+      hvac: "Para negocios de HVAC: nuestro agente de voz responde llamadas 24/7 (especialmente fuera de horario y fines de semana), califica si es reparación o presupuesto, agenda visitas del técnico y envía recordatorios automáticos. WhatsApp hace seguimiento de cotizaciones y pide reseñas. Nunca más pierdes una llamada de servicio.",
+      dental: "Para consultorios dentales: el chat IA atiende solicitudes de cita 24/7, responde dudas frecuentes y recopila datos iniciales del paciente. WhatsApp envía recordatorios, mensajes de revisión semestral y solicitudes de reseña. Los agentes de voz atienden cuando la recepcionista está ocupada.",
+      realEstate: "Para inmobiliarias: el chat IA califica leads de compra y venta (zona, presupuesto, plazo), agenda tours y da seguimiento automático a leads inactivos. WhatsApp nutre prospectos en ciclos de venta largos. Los agentes de voz atienden consultas sobre propiedades a cualquier hora.",
+      legal: "Para despachos legales: el chat IA califica clientes potenciales (área legal, tipo de caso, urgencia), recopila información inicial y agenda consultas — filtrando consultas no calificadas. Los agentes de voz atienden llamadas fuera de horario de forma profesional.",
+      fallback: "Buena pregunta. yasas.io ayuda a dejar de perder leads respondiendo más rápido y dando seguimiento automático. ¿Quieres saber más sobre chatbots, WhatsApp, agentes de voz? ¿O prefieres agendar una auditoría gratis?",
+      missing: "Por favor completa todos los campos para confirmar tu horario de auditoría.",
+      done: "Listo — tu solicitud quedó registrada. En producción se envía a tu email y CRM, y se sincroniza con Calendly o Google Calendar para confirmar de inmediato.",
+      phonePlaceholder: "Número de teléfono",
+      quickAfterBuild: ["Cuéntame sobre chatbots", "¿Automatización WhatsApp?", "¿Agentes de voz IA?", "¿Cuánto cuesta?"],
+      quickAfterPrice: ["¿Qué incluye el plan $497?", "¿Detalles de Client Capture?", "¿Cuánto tiempo tarda?", "Agendar auditoría"],
+      quickAfterVoice: ["¿Voz para HVAC?", "¿Voz para dental?", "¿Automatización WhatsApp?", "Agendar auditoría"],
+      quickAfterWa: ["¿WhatsApp para dental?", "¿Agentes de voz?", "¿Precios?", "Agendar auditoría"],
+      quickAfterIndustries: ["Cuéntame sobre HVAC", "¿Automatización dental?", "¿Inmobiliaria?", "Agendar auditoría"],
+      quickAfterTimeline: ["¿Qué incluye?", "¿Cuánto cuesta?", "Agendar auditoría", "¿Qué sectores?"],
+      quickAfterSupport: ["¿Cuánto tiempo tarda?", "¿Precios?", "Agendar auditoría", "¿Qué integraciones?"],
+      quickAfterIntegrations: ["¿Automatización WhatsApp?", "¿Agentes de voz?", "¿Precios?", "Agendar auditoría"],
+      quickAfterRoi: ["¿Cómo funciona?", "¿Precios?", "Agendar auditoría", "¿Qué integraciones?"],
     },
     visual: {
       pipeline: "Pipeline de leads", lead: "Nuevo lead", follow: "Seguimiento IA", booked: "Cita agendada",
@@ -421,6 +547,75 @@ function TiltCard({ children, className = "" }) {
       />
       {children}
     </motion.div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// SERVICE MODAL
+// ─────────────────────────────────────────────
+function ServiceModal({ idx, t, onClose }) {
+  const service = idx !== null ? t.services[idx] : null;
+  const detail = idx !== null ? t.serviceDetails[idx] : null;
+  const Icon = idx !== null ? serviceIcons[idx] : null;
+  const lm = t.learnModal;
+
+  return (
+    <AnimatePresence>
+      {idx !== null && (
+        <motion.div
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[70] flex items-end justify-center p-4 sm:items-center sm:p-6"
+          onClick={onClose}
+        >
+          <motion.div className="absolute inset-0 bg-black/65 backdrop-blur-sm" />
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 320, damping: 30 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative z-10 w-full max-w-lg overflow-hidden rounded-[2rem] border border-white/10 bg-[#081020]/97 shadow-[0_40px_120px_rgba(0,0,0,.7)] backdrop-blur-xl"
+          >
+            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#FF5A4D] via-[#FFB020] to-[#7B5CFF]" />
+            <div className="p-6 sm:p-8">
+              <div className="mb-5 flex items-start justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-[#7B5CFF]/30 bg-[#7B5CFF]/10 text-[#FF5A4D]">
+                    {Icon && <Icon className="h-6 w-6" />}
+                  </div>
+                  <h3 className="text-xl font-bold leading-tight text-white">{service?.[0]}</h3>
+                </div>
+                <button onClick={onClose} className="rounded-full p-2 text-white/50 transition hover:bg-white/10 hover:text-white">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <p className="mb-5 leading-7 text-white/70">{detail?.long}</p>
+              <div className="mb-5 space-y-2.5">
+                {detail?.features.map((f) => (
+                  <div key={f} className="flex items-start gap-3">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#FFB020]" />
+                    <span className="text-sm leading-6 text-white/80">{f}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mb-6 grid grid-cols-2 gap-3">
+                <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
+                  <p className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-white/35">{lm.industries}</p>
+                  <p className="text-xs leading-5 text-white/70">{detail?.industries}</p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
+                  <p className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-white/35">{lm.timeline}</p>
+                  <p className="text-sm font-bold text-white">{detail?.timeline}</p>
+                </div>
+              </div>
+              <PrimaryButton href="#booking" className="w-full justify-center text-sm" onClick={onClose}>
+                {lm.cta} <ArrowRight className="ml-2 h-4 w-4" />
+              </PrimaryButton>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -699,15 +894,26 @@ function Chatbot({ t }) {
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([{ from: "bot", text: t.chat.intro }]);
   const [input, setInput] = useState("");
-  const [booking, setBooking] = useState({ name: "", email: "", business: "", time: "" });
+  const [quickReplies, setQuickReplies] = useState(t.chat.quick);
+  const [booking, setBooking] = useState({ name: "", email: "", phone: "", business: "", time: "" });
   const bottomRef = useRef(null);
 
-  useEffect(() => { setMessages([{ from: "bot", text: t.chat.intro }]); setStep("start"); }, [t.chat.intro]);
+  useEffect(() => {
+    setMessages([{ from: "bot", text: t.chat.intro }]);
+    setStep("start");
+    setQuickReplies(t.chat.quick);
+  }, [t.chat.intro]);
+
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, typing, open, step]);
 
-  function botReply(text) {
+  function botReply(text, nextQuick) {
     setTyping(true);
-    setTimeout(() => { setTyping(false); setMessages((m) => [...m, { from: "bot", text }]); }, 650);
+    const delay = Math.min(500 + text.length * 1.8, 1400);
+    setTimeout(() => {
+      setTyping(false);
+      setMessages((m) => [...m, { from: "bot", text }]);
+      if (nextQuick) setQuickReplies(nextQuick);
+    }, delay);
   }
 
   function handleUser(text) {
@@ -717,20 +923,91 @@ function Chatbot({ t }) {
     setInput("");
     const s = t.chat;
     const q = clean.toLowerCase();
-    if (q.includes("book") || q.includes("appointment") || q.includes("audit") || q.includes("cita") || q.includes("agendar")) { setStep("booking"); botReply(s.booking); return; }
-    if (q.includes("price") || q.includes("cost") || q.includes("how much") || q.includes("precio") || q.includes("cuanto") || q.includes("cuánto")) { botReply(s.price); return; }
-    if (q.includes("what") || q.includes("build") || q.includes("service") || q.includes("constru") || q.includes("hacen") || q.includes("servicio")) { botReply(s.build); return; }
-    if (q.includes("whatsapp") || q.includes("wa")) { botReply(s.wa); return; }
-    if (q.includes("voice") || q.includes("call") || q.includes("phone") || q.includes("llamada") || q.includes("voz")) { botReply(s.voice); return; }
-    if (q.includes("calendar") || q.includes("calendly") || q.includes("google") || q.includes("agenda")) { botReply(s.calendar); return; }
-    if (q.includes("guarantee") || q.includes("garant")) { botReply(s.guarantee); return; }
-    botReply(s.fallback);
+
+    if (q.includes("book") || q.includes("audit") || q.includes("schedule") || q.includes("demo") ||
+        q.includes("cita") || q.includes("agendar") || q.includes("auditoría") || q.includes("auditoria")) {
+      setStep("booking"); botReply(s.booking); return;
+    }
+    if (q.includes("price") || q.includes("cost") || q.includes("how much") || q.includes("package") ||
+        q.includes("precio") || q.includes("cuanto") || q.includes("cuánto") || q.includes("paquete") || q.includes("$")) {
+      botReply(s.price, s.quickAfterPrice); return;
+    }
+    if (q.includes("whatsapp") || (q.includes("wa") && q.length < 12)) {
+      botReply(s.wa, s.quickAfterWa); return;
+    }
+    if (q.includes("voice") || q.includes("phone") || q.includes("answer call") || q.includes("missed call") ||
+        q.includes("llamada") || q.includes("voz") || q.includes("teléfono") || q.includes("telefono")) {
+      botReply(s.voice, s.quickAfterVoice); return;
+    }
+    if (q.includes("chatbot") || q.includes("chat assistant") || q.includes("website chat") ||
+        q.includes("asistente") || q.includes("chat ia") || q.includes("chat web")) {
+      botReply(s.chatbotInfo, s.quickAfterBuild); return;
+    }
+    if (q.includes("automation") || q.includes("workflow") || q.includes("zapier") || q.includes("make") ||
+        q.includes("n8n") || q.includes("automatizac") || q.includes("flujo") || q.includes("connect")) {
+      botReply(s.automationsInfo, s.quickAfterBuild); return;
+    }
+    if (q.includes("booking system") || q.includes("calendar") || q.includes("calendly") || q.includes("schedule") ||
+        q.includes("appointment") || q.includes("agenda") || q.includes("reserva")) {
+      botReply(s.bookingSystem, s.quickAfterBuild); return;
+    }
+    if (q.includes("crm") || q.includes("dashboard") || q.includes("pipeline") || q.includes("track")) {
+      botReply(s.crmInfo, s.quickAfterBuild); return;
+    }
+    if (q.includes("what") || q.includes("build") || q.includes("service") || q.includes("do you") ||
+        q.includes("constru") || q.includes("hacen") || q.includes("servicio") || q.includes("qué")) {
+      botReply(s.build, s.quickAfterBuild); return;
+    }
+    if (q.includes("industr") || q.includes("sector") || q.includes("business type") || q.includes("who do") ||
+        q.includes("tipo") || q.includes("negocio") || q.includes("para quién")) {
+      botReply(s.industries, s.quickAfterIndustries); return;
+    }
+    if (q.includes("hvac") || q.includes("plumb") || q.includes("contractor") || q.includes("heating") || q.includes("air condition")) {
+      botReply(s.hvac, s.quickAfterIndustries); return;
+    }
+    if (q.includes("dental") || q.includes("dentist") || q.includes("clinic") || q.includes("clínica") || q.includes("clinica")) {
+      botReply(s.dental, s.quickAfterIndustries); return;
+    }
+    if (q.includes("real estate") || q.includes("realtor") || q.includes("property") || q.includes("inmobili") || q.includes("bienes raíces")) {
+      botReply(s.realEstate, s.quickAfterIndustries); return;
+    }
+    if (q.includes("lawyer") || q.includes("attorney") || q.includes("law firm") || q.includes("legal") || q.includes("abogado")) {
+      botReply(s.legal, s.quickAfterIndustries); return;
+    }
+    if (q.includes("how long") || q.includes("timeline") || q.includes("how fast") || q.includes("when") ||
+        q.includes("cuánto tiempo") || q.includes("tiempo") || q.includes("días") || q.includes("rápido")) {
+      botReply(s.timeline, s.quickAfterTimeline); return;
+    }
+    if (q.includes("support") || q.includes("maintain") || q.includes("after launch") || q.includes("help after") ||
+        q.includes("soporte") || q.includes("después") || q.includes("mantenimiento")) {
+      botReply(s.support, s.quickAfterSupport); return;
+    }
+    if (q.includes("integrat") || q.includes("tool") || q.includes("software") || q.includes("connect") ||
+        q.includes("integración") || q.includes("herramienta") || q.includes("conectar")) {
+      botReply(s.integrations, s.quickAfterIntegrations); return;
+    }
+    if (q.includes("roi") || q.includes("return") || q.includes("worth it") || q.includes("result") ||
+        q.includes("retorno") || q.includes("vale la pena") || q.includes("resultado")) {
+      botReply(s.roi, s.quickAfterRoi); return;
+    }
+    if (q.includes("how it works") || q.includes("process") || q.includes("steps") || q.includes("how do") ||
+        q.includes("cómo funciona") || q.includes("como funciona") || q.includes("proceso") || q.includes("pasos")) {
+      botReply(s.howItWorks, s.quickAfterTimeline); return;
+    }
+    if (q.includes("guarantee") || q.includes("promis") || q.includes("garant") || q.includes("promesa")) {
+      botReply(s.guarantee, s.quickAfterRoi); return;
+    }
+    botReply(s.fallback, t.chat.quick);
   }
 
   function submitBooking(e) {
     e.preventDefault();
     if (Object.values(booking).some((v) => !v.trim())) { botReply(t.chat.missing); return; }
-    setMessages((m) => [...m, { from: "user", text: `${booking.name} · ${booking.email} · ${booking.business} · ${booking.time}` }, { from: "bot", text: t.chat.done }]);
+    setMessages((m) => [
+      ...m,
+      { from: "user", text: `${booking.name} · ${booking.email} · ${booking.phone} · ${booking.business} · ${booking.time}` },
+      { from: "bot", text: t.chat.done },
+    ]);
     setStep("done");
   }
 
@@ -739,7 +1016,8 @@ function Chatbot({ t }) {
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity: 0, y: 30, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.96 }}
-            className="mb-4 h-[76vh] w-[calc(100vw-2rem)] overflow-hidden rounded-[1.7rem] border border-white/15 bg-[#081020]/95 shadow-[0_35px_100px_rgba(0,0,0,.55)] backdrop-blur-xl sm:h-[640px] sm:w-[360px]">
+            className="mb-4 h-[82vh] w-[calc(100vw-2rem)] overflow-hidden rounded-[1.7rem] border border-white/15 bg-[#081020]/95 shadow-[0_35px_100px_rgba(0,0,0,.55)] backdrop-blur-xl sm:h-[680px] sm:w-[380px]">
+            {/* Header */}
             <div className="relative flex items-center justify-between border-b border-white/10 bg-white/[0.035] p-4">
               <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent" />
               <div className="flex min-w-0 items-center gap-3">
@@ -757,47 +1035,64 @@ function Chatbot({ t }) {
                   </p>
                 </div>
               </div>
-              <button onClick={() => setOpen(false)} className="rounded-full p-2 text-white/60 hover:bg-white/10 hover:text-white"><X className="h-4 w-4" /></button>
+              <button onClick={() => setOpen(false)} className="rounded-full p-2 text-white/60 hover:bg-white/10 hover:text-white">
+                <X className="h-4 w-4" />
+              </button>
             </div>
-            <div className="h-[calc(76vh-220px)] space-y-3 overflow-y-auto p-4 sm:h-[400px]">
+            {/* Messages */}
+            <div className="h-[calc(82vh-230px)] space-y-3 overflow-y-auto p-4 sm:h-[430px]">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}>
-                  <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.2 }}
-                    className={`max-w-[82%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${m.from === "user" ? "bg-[#7B5CFF] text-white" : "bg-white/10 text-white/85"}`}>
+                  <motion.div initial={{ opacity: 0, scale: 0.9, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.22 }}
+                    className={`max-w-[84%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${m.from === "user" ? "bg-[#7B5CFF] text-white" : "bg-white/[0.08] text-white/85"}`}>
                     {m.text}
                   </motion.div>
                 </div>
               ))}
-              {typing && <TypingBubble />}
-              {step === "booking" && (
-                <form onSubmit={submitBooking} className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+              {typing && (
+                <div className="flex justify-start">
+                  <TypingBubble />
+                </div>
+              )}
+              {step === "booking" && !typing && (
+                <motion.form initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} onSubmit={submitBooking}
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
                   <p className="mb-3 text-sm font-semibold text-white">{t.chat.formTitle}</p>
                   <div className="space-y-2">
-                    {[["name", t.chat.name], ["email", t.chat.email], ["business", t.chat.business]].map(([field, ph]) => (
-                      <input key={field} placeholder={ph} value={booking[field]} onChange={(e) => setBooking({ ...booking, [field]: e.target.value })}
-                        className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2 text-sm text-white outline-none focus:border-[#7B5CFF]" />
+                    {[["name", t.chat.name, "text"], ["email", t.chat.email, "email"], ["phone", t.chat.phonePlaceholder, "tel"], ["business", t.chat.business, "text"]].map(([field, ph, type]) => (
+                      <input key={field} type={type} placeholder={ph} value={booking[field]}
+                        onChange={(e) => setBooking({ ...booking, [field]: e.target.value })}
+                        className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-[#7B5CFF]" />
                     ))}
                     <select value={booking.time} onChange={(e) => setBooking({ ...booking, time: e.target.value })}
-                      className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2 text-sm text-white outline-none focus:border-[#7B5CFF]">
+                      className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2.5 text-sm text-white outline-none focus:border-[#7B5CFF]">
                       <option value="">{t.chat.time}</option>
                       {t.chat.times.map((x) => <option key={x}>{x}</option>)}
                     </select>
-                    <button className="w-full rounded-xl bg-[#FF5A4D] py-2 text-sm font-semibold text-white hover:bg-[#ff4a3b]">{t.chat.submit}</button>
+                    <button className="w-full rounded-xl bg-gradient-to-r from-[#FF5A4D] to-[#FFB020] py-2.5 text-sm font-bold text-white hover:opacity-90">
+                      {t.chat.submit}
+                    </button>
                   </div>
-                </form>
+                </motion.form>
               )}
               <div ref={bottomRef} />
             </div>
+            {/* Input area */}
             <div className="border-t border-white/10 p-3">
-              <div className="mb-2 flex flex-wrap gap-2">
-                {t.chat.quick.map((q) => (
-                  <button key={q} onClick={() => handleUser(q)} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/75 hover:border-[#7B5CFF] hover:text-white">{q}</button>
+              <div className="mb-2 flex flex-wrap gap-1.5">
+                {quickReplies.map((q) => (
+                  <motion.button key={q} whileHover={{ scale: 1.03 }} onClick={() => handleUser(q)}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/70 transition hover:border-[#7B5CFF]/60 hover:bg-[#7B5CFF]/10 hover:text-white">
+                    {q}
+                  </motion.button>
                 ))}
               </div>
               <form onSubmit={(e) => { e.preventDefault(); handleUser(input); }} className="flex gap-2">
                 <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={t.chat.input}
-                  className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white outline-none focus:border-[#7B5CFF]" />
-                <button className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#7B5CFF] text-white hover:bg-[#6b4df0]"><Send className="h-4 w-4" /></button>
+                  className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#7B5CFF]" />
+                <button type="submit" className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#7B5CFF] text-white transition hover:bg-[#6b4df0]">
+                  <Send className="h-4 w-4" />
+                </button>
               </form>
             </div>
           </motion.div>
@@ -837,6 +1132,7 @@ export default function YasasLandingPage() {
   const [lang, setLang] = useState("en");
   const [faqOpen, setFaqOpen] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openService, setOpenService] = useState(null);
   const t = copy[lang];
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.35], [0, -50]);
@@ -935,9 +1231,10 @@ export default function YasasLandingPage() {
                     </motion.div>
                     <h3 className="text-xl font-bold text-white">{title}</h3>
                     <p className="mt-3 leading-7 text-white/55">{text}</p>
-                    <motion.p whileHover={{ x: 4 }} className="mt-6 flex items-center text-sm font-bold text-[#7B5CFF]">
+                    <motion.button onClick={() => setOpenService(i)} whileHover={{ x: 4 }}
+                      className="mt-6 flex items-center text-sm font-bold text-[#7B5CFF]">
                       {t.learn} <ArrowRight className="ml-1 h-4 w-4" />
-                    </motion.p>
+                    </motion.button>
                   </TiltCard>
                 </Reveal>
               );
@@ -1131,6 +1428,7 @@ export default function YasasLandingPage() {
       </footer>
 
       <Chatbot t={t} />
+      <ServiceModal idx={openService} t={t} onClose={() => setOpenService(null)} />
     </div>
   );
 }
