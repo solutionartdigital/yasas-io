@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import ShaderBackground from "@/components/ui/shader-background";
+import React, { useEffect, useRef, useState, Suspense } from "react";
+import ThreeScene from "./ThreeScene";
 import {
   motion,
   AnimatePresence,
@@ -1140,16 +1140,17 @@ export default function YasasLandingPage() {
   const hrefs = ["#solutions", "#how", "#results", "#pricing", "#faq"];
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#081020] font-sans text-white selection:bg-[#FF5A4D]/40">
+    <div className="min-h-screen overflow-x-hidden bg-[#050b14] font-sans text-white selection:bg-[#FF5A4D]/40">
       <ScrollProgress />
       <CursorGlow />
-      <ShaderBackground />
-      {/* Overlay: dark vignette + grid texture so text stays readable over shader */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,transparent_40%,rgba(8,16,32,0.72)_100%)]" />
-        <div className="absolute inset-0 opacity-[0.03] [background-image:linear-gradient(rgba(255,255,255,.7)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.7)_1px,transparent_1px)] [background-size:48px_48px]" />
-        <motion.div className="absolute left-[-25%] top-[58%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent opacity-20" animate={{ x: ["-6%", "6%", "-6%"] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }} />
-        <motion.div className="absolute left-[-25%] top-[61%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#7B5CFF] to-transparent opacity-15" animate={{ x: ["6%", "-6%", "6%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+      {/* 3D WebGL background */}
+      <Suspense fallback={<div className="fixed inset-0 z-0 bg-[#050b14]" />}>
+        <ThreeScene />
+      </Suspense>
+      {/* Subtle overlay to keep text readable */}
+      <div className="pointer-events-none fixed inset-0 z-[1]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(5,11,20,0.6)_0%,transparent_60%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#050b14] to-transparent" />
       </div>
 
       {/* ── HEADER ── */}
