@@ -353,10 +353,10 @@ const typewriterWords = {
 
 const liveActivities = [
   { icon: "📞", text: "AI answered a call",      color: "#10b981" },
-  { icon: "✅", text: "New lead captured",        color: "#FFB020" },
+  { icon: "✅", text: "New lead captured",        color: "#06b6d4" },
   { icon: "💬", text: "WhatsApp reply sent",      color: "#a78bfa" },
   { icon: "📅", text: "Appointment booked",       color: "#10b981" },
-  { icon: "⚡", text: "Response in 0.8s",         color: "#FF5A4D" },
+  { icon: "⚡", text: "Response in 0.8s",         color: "#2563eb" },
   { icon: "🔔", text: "Follow-up automated",      color: "#a78bfa" },
 ];
 
@@ -367,7 +367,7 @@ function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   return (
     <motion.div
-      className="fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-gradient-to-r from-[#FF5A4D] via-[#FFB020] to-[#7B5CFF]"
+      className="fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-gradient-to-r from-[#2563eb] via-[#06b6d4] to-[#4f46e5]"
       style={{ scaleX: scrollYProgress }}
     />
   );
@@ -430,12 +430,12 @@ function TypewriterText({ lang }) {
   }, [charIdx, deleting, wordIdx, words]);
 
   return (
-    <span className="bg-gradient-to-r from-[#FF5A4D] to-[#FFB020] bg-clip-text text-transparent">
+    <span className="bg-gradient-to-r from-[#2563eb] to-[#06b6d4] bg-clip-text text-transparent">
       {words[wordIdx].slice(0, charIdx)}
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.55, repeat: Infinity, repeatType: "reverse" }}
-        className="text-[#FF5A4D]"
+        className="text-[#06b6d4]"
       >|</motion.span>
     </span>
   );
@@ -577,11 +577,11 @@ function ServiceModal({ idx, t, onClose }) {
             onClick={(e) => e.stopPropagation()}
             className="relative z-10 w-full max-w-lg overflow-hidden rounded-[2rem] border border-white/10 bg-[#081020]/97 shadow-[0_40px_120px_rgba(0,0,0,.7)] backdrop-blur-xl"
           >
-            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#FF5A4D] via-[#FFB020] to-[#7B5CFF]" />
+            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#2563eb] via-[#06b6d4] to-[#4f46e5]" />
             <div className="p-6 sm:p-8">
               <div className="mb-5 flex items-start justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-[#7B5CFF]/30 bg-[#7B5CFF]/10 text-[#FF5A4D]">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-[#2563eb]/30 bg-[#2563eb]/10 text-[#06b6d4]">
                     {Icon && <Icon className="h-6 w-6" />}
                   </div>
                   <h3 className="text-xl font-bold leading-tight text-white">{service?.[0]}</h3>
@@ -594,7 +594,7 @@ function ServiceModal({ idx, t, onClose }) {
               <div className="mb-5 space-y-2.5">
                 {detail?.features.map((f) => (
                   <div key={f} className="flex items-start gap-3">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#FFB020]" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#06b6d4]" />
                     <span className="text-sm leading-6 text-white/80">{f}</span>
                   </div>
                 ))}
@@ -645,7 +645,7 @@ function YasasLogo({ small = false, iconOnly = false }) {
       {!iconOnly && (
         <div className="flex items-center leading-none">
           <span className={`${textSize} font-extrabold tracking-tight text-white`}>yasas</span>
-          <span className={`${textSize} font-extrabold tracking-tight text-[#7B5CFF]`}>.io</span>
+          <span className={`${textSize} font-extrabold tracking-tight text-[#2563eb]`}>.io</span>
         </div>
       )}
     </div>
@@ -676,11 +676,11 @@ function AnimatedBackground() {
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#081020]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(123,92,255,.22),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(255,90,77,.18),transparent_25%),radial-gradient(circle_at_45%_88%,rgba(255,176,32,.11),transparent_34%),linear-gradient(180deg,#081020_0%,#0A1020_52%,#050914_100%)]" />
       <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:48px_48px]" />
-      <motion.div className="absolute -left-24 top-24 h-[28rem] w-[28rem] rounded-full bg-[#7B5CFF]/25 blur-3xl" style={{ x: orb1X, y: orb1Y }} />
-      <motion.div className="absolute right-0 top-40 h-[32rem] w-[32rem] rounded-full bg-[#FF5A4D]/18 blur-3xl" style={{ x: orb2X, y: orb2Y }} />
-      <motion.div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-[#FFB020]/12 blur-3xl" animate={{ x: [0, 25, 0], y: [0, -35, 0], scale: [1, 1.1, 1] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} />
-      <motion.div className="absolute left-[-25%] top-[58%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent opacity-30" animate={{ x: ["-6%", "6%", "-6%"] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }} />
-      <motion.div className="absolute left-[-25%] top-[61%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#7B5CFF] to-transparent opacity-25" animate={{ x: ["6%", "-6%", "6%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+      <motion.div className="absolute -left-24 top-24 h-[28rem] w-[28rem] rounded-full bg-[#2563eb]/25 blur-3xl" style={{ x: orb1X, y: orb1Y }} />
+      <motion.div className="absolute right-0 top-40 h-[32rem] w-[32rem] rounded-full bg-[#2563eb]/18 blur-3xl" style={{ x: orb2X, y: orb2Y }} />
+      <motion.div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-[#06b6d4]/12 blur-3xl" animate={{ x: [0, 25, 0], y: [0, -35, 0], scale: [1, 1.1, 1] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} />
+      <motion.div className="absolute left-[-25%] top-[58%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#2563eb] to-transparent opacity-30" animate={{ x: ["-6%", "6%", "-6%"] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }} />
+      <motion.div className="absolute left-[-25%] top-[61%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#4f46e5] to-transparent opacity-25" animate={{ x: ["6%", "-6%", "6%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
     </div>
   );
 }
@@ -731,9 +731,9 @@ function PrimaryButton({ children, href = "#booking", className = "" }) {
       onHoverEnd={() => setHovered(false)}
       whileHover={{ scale: 1.03, y: -2 }}
       whileTap={{ scale: 0.97 }}
-      className={`group relative inline-flex items-center justify-center overflow-hidden rounded-2xl bg-[#FF5A4D] px-7 py-4 font-bold text-white shadow-[0_20px_70px_rgba(255,90,77,.28)] ${className}`}
+      className={`group relative inline-flex items-center justify-center overflow-hidden rounded-2xl bg-[#2563eb] px-7 py-4 font-bold text-white shadow-[0_20px_70px_rgba(37,99,235,.35)] ${className}`}
     >
-      <span className="absolute inset-0 bg-gradient-to-r from-[#FF5A4D] via-[#FFB020] to-[#FF5A4D] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <span className="absolute inset-0 bg-gradient-to-r from-[#2563eb] via-[#06b6d4] to-[#2563eb] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <AnimatePresence>
         {hovered && (
           <motion.span
@@ -802,14 +802,14 @@ function HeroVisual({ t }) {
       <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,.65)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.65)_1px,transparent_1px)] [background-size:34px_34px]" />
 
       {/* Animated connector lines */}
-      <motion.div className="absolute left-[44%] top-[28%] hidden h-[2px] w-[180px] origin-left bg-gradient-to-r from-[#FF5A4D] to-[#FFB020] sm:block" animate={{ opacity: [0.3, 1, 0.3], scaleX: [0.5, 1.08, 0.5] }} transition={{ duration: 2.4, repeat: Infinity }} />
-      <motion.div className="absolute left-[44%] top-[50%] hidden h-[2px] w-[180px] origin-left bg-gradient-to-r from-[#7B5CFF] to-[#FF5A4D] sm:block" animate={{ opacity: [0.25, 1, 0.25], scaleX: [0.45, 1.04, 0.45] }} transition={{ duration: 3.2, repeat: Infinity }} />
+      <motion.div className="absolute left-[44%] top-[28%] hidden h-[2px] w-[180px] origin-left bg-gradient-to-r from-[#2563eb] to-[#06b6d4] sm:block" animate={{ opacity: [0.3, 1, 0.3], scaleX: [0.5, 1.08, 0.5] }} transition={{ duration: 2.4, repeat: Infinity }} />
+      <motion.div className="absolute left-[44%] top-[50%] hidden h-[2px] w-[180px] origin-left bg-gradient-to-r from-[#4f46e5] to-[#2563eb] sm:block" animate={{ opacity: [0.25, 1, 0.25], scaleX: [0.45, 1.04, 0.45] }} transition={{ duration: 3.2, repeat: Infinity }} />
 
       {/* Rotating orbit ring */}
-      <motion.div className="absolute left-[47%] top-[22%] h-[270px] w-[270px] rounded-full border border-[#FF5A4D]/15" animate={{ rotate: 360 }} transition={{ duration: 24, repeat: Infinity, ease: "linear" }} />
-      <motion.div className="absolute left-[42%] top-[18%] h-[320px] w-[320px] rounded-full border border-[#7B5CFF]/10" animate={{ rotate: -360 }} transition={{ duration: 32, repeat: Infinity, ease: "linear" }} />
+      <motion.div className="absolute left-[47%] top-[22%] h-[270px] w-[270px] rounded-full border border-[#2563eb]/15" animate={{ rotate: 360 }} transition={{ duration: 24, repeat: Infinity, ease: "linear" }} />
+      <motion.div className="absolute left-[42%] top-[18%] h-[320px] w-[320px] rounded-full border border-[#4f46e5]/10" animate={{ rotate: -360 }} transition={{ duration: 32, repeat: Infinity, ease: "linear" }} />
 
-      <motion.div className="absolute right-[-80px] bottom-[-70px] h-60 w-60 rounded-full bg-[#7B5CFF]/20 blur-3xl" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 5, repeat: Infinity }} />
+      <motion.div className="absolute right-[-80px] bottom-[-70px] h-60 w-60 rounded-full bg-[#2563eb]/20 blur-3xl" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 5, repeat: Infinity }} />
 
       <div className="relative z-10 grid h-full grid-cols-1 gap-4 pb-16 sm:grid-cols-2 sm:gap-5 sm:pb-14">
         <div className="space-y-4">
@@ -819,7 +819,7 @@ function HeroVisual({ t }) {
               <motion.div key={item} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 + i * 0.18 }}
                 className="mb-3 rounded-xl border border-white/10 bg-white/[0.045] p-3">
                 <div className="flex items-center gap-2">
-                  <span className={`h-2.5 w-2.5 rounded-full ${i === 0 ? "bg-[#FFB020]" : i === 1 ? "bg-[#7B5CFF]" : "bg-emerald-400"}`} />
+                  <span className={`h-2.5 w-2.5 rounded-full ${i === 0 ? "bg-[#06b6d4]" : i === 1 ? "bg-[#2563eb]" : "bg-emerald-400"}`} />
                   <p className="text-sm font-semibold text-white">{item}</p>
                 </div>
                 <p className="mt-1 text-xs text-white/45">{desc}</p>
@@ -829,7 +829,7 @@ function HeroVisual({ t }) {
           <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity }} className="rounded-2xl border border-white/10 bg-[#0D172A]/78 p-4">
             <div className="mb-3 flex items-center justify-between">
               <p className="text-xs uppercase tracking-[.2em] text-white/45">{v.whatsapp}</p>
-              <Smartphone className="h-4 w-4 text-[#FFB020]" />
+              <Smartphone className="h-4 w-4 text-[#06b6d4]" />
             </div>
             <div className="rounded-xl bg-[#25D366]/10 p-3 text-xs leading-5 text-white/75">{v.waMsg}</div>
           </motion.div>
@@ -842,7 +842,7 @@ function HeroVisual({ t }) {
             </div>
             <div className="space-y-2">
               <div className="w-3/4 rounded-xl bg-white/10 p-2 text-xs text-white/80">Hi! How can I help?</div>
-              <div className="ml-auto w-4/5 rounded-xl bg-[#7B5CFF]/30 p-2 text-xs text-white/80">{v.user}</div>
+              <div className="ml-auto w-4/5 rounded-xl bg-[#2563eb]/30 p-2 text-xs text-white/80">{v.user}</div>
               <div className="w-full rounded-xl bg-white/10 p-2 text-xs text-white/80">{v.bot}</div>
             </div>
           </motion.div>
@@ -852,7 +852,7 @@ function HeroVisual({ t }) {
                 <p className="text-sm font-semibold text-white">{v.voice}</p>
                 <p className="mt-1 text-xs leading-5 text-white/45">{v.voiceText}</p>
               </div>
-              <motion.div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#FF5A4D] to-[#7B5CFF]"
+              <motion.div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#2563eb] to-[#4f46e5]"
                 animate={{ boxShadow: ["0 0 0 rgba(255,90,77,0)", "0 0 40px rgba(255,90,77,.5)", "0 0 0 rgba(255,90,77,0)"] }}
                 transition={{ duration: 2, repeat: Infinity }}>
                 <Mic2 className="h-5 w-5 text-white" />
@@ -865,7 +865,7 @@ function HeroVisual({ t }) {
                 <p className="text-sm font-semibold text-white">{v.call}</p>
                 <p className="mt-1 text-xs text-white/50">{v.time}</p>
               </div>
-              <CalendarDays className="h-6 w-6 text-[#FF5A4D]" />
+              <CalendarDays className="h-6 w-6 text-[#06b6d4]" />
             </div>
           </motion.div>
         </div>
@@ -1020,9 +1020,9 @@ function Chatbot({ t }) {
             className="mb-4 h-[82vh] w-[calc(100vw-2rem)] overflow-hidden rounded-[1.7rem] border border-white/15 bg-[#081020]/95 shadow-[0_35px_100px_rgba(0,0,0,.55)] backdrop-blur-xl sm:h-[680px] sm:w-[380px]">
             {/* Header */}
             <div className="relative flex items-center justify-between border-b border-white/10 bg-white/[0.035] p-4">
-              <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent" />
+              <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#2563eb] to-transparent" />
               <div className="flex min-w-0 items-center gap-3">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#FF5A4D] via-[#FFB020] to-[#7B5CFF] shadow-[0_0_34px_rgba(123,92,255,.35)]">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#2563eb] via-[#06b6d4] to-[#4f46e5] shadow-[0_0_34px_rgba(37,99,235,.4)]">
                   <Bot className="h-5 w-5 text-white" />
                 </div>
                 <div className="min-w-0">
@@ -1045,7 +1045,7 @@ function Chatbot({ t }) {
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}>
                   <motion.div initial={{ opacity: 0, scale: 0.9, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.22 }}
-                    className={`max-w-[84%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${m.from === "user" ? "bg-[#7B5CFF] text-white" : "bg-white/[0.08] text-white/85"}`}>
+                    className={`max-w-[84%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${m.from === "user" ? "bg-[#2563eb] text-white" : "bg-white/[0.08] text-white/85"}`}>
                     {m.text}
                   </motion.div>
                 </div>
@@ -1063,14 +1063,14 @@ function Chatbot({ t }) {
                     {[["name", t.chat.name, "text"], ["email", t.chat.email, "email"], ["phone", t.chat.phonePlaceholder, "tel"], ["business", t.chat.business, "text"]].map(([field, ph, type]) => (
                       <input key={field} type={type} placeholder={ph} value={booking[field]}
                         onChange={(e) => setBooking({ ...booking, [field]: e.target.value })}
-                        className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-[#7B5CFF]" />
+                        className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-[#2563eb]" />
                     ))}
                     <select value={booking.time} onChange={(e) => setBooking({ ...booking, time: e.target.value })}
-                      className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2.5 text-sm text-white outline-none focus:border-[#7B5CFF]">
+                      className="w-full rounded-xl border border-white/10 bg-[#0D172A] px-3 py-2.5 text-sm text-white outline-none focus:border-[#2563eb]">
                       <option value="">{t.chat.time}</option>
                       {t.chat.times.map((x) => <option key={x}>{x}</option>)}
                     </select>
-                    <button className="w-full rounded-xl bg-gradient-to-r from-[#FF5A4D] to-[#FFB020] py-2.5 text-sm font-bold text-white hover:opacity-90">
+                    <button className="w-full rounded-xl bg-gradient-to-r from-[#2563eb] to-[#06b6d4] py-2.5 text-sm font-bold text-white hover:opacity-90">
                       {t.chat.submit}
                     </button>
                   </div>
@@ -1083,15 +1083,15 @@ function Chatbot({ t }) {
               <div className="mb-2 flex flex-wrap gap-1.5">
                 {quickReplies.map((q) => (
                   <motion.button key={q} whileHover={{ scale: 1.03 }} onClick={() => handleUser(q)}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/70 transition hover:border-[#7B5CFF]/60 hover:bg-[#7B5CFF]/10 hover:text-white">
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/70 transition hover:border-[#2563eb]/60 hover:bg-[#2563eb]/10 hover:text-white">
                     {q}
                   </motion.button>
                 ))}
               </div>
               <form onSubmit={(e) => { e.preventDefault(); handleUser(input); }} className="flex gap-2">
                 <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={t.chat.input}
-                  className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#7B5CFF]" />
-                <button type="submit" className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#7B5CFF] text-white transition hover:bg-[#6b4df0]">
+                  className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#2563eb]" />
+                <button type="submit" className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#2563eb] text-white transition hover:bg-[#1d4ed8]">
                   <Send className="h-4 w-4" />
                 </button>
               </form>
@@ -1100,7 +1100,7 @@ function Chatbot({ t }) {
         )}
       </AnimatePresence>
       <motion.button onClick={() => setOpen(!open)} whileHover={{ scale: 1.06, y: -3 }} whileTap={{ scale: 0.95 }}
-        className="ml-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF5A4D] via-[#FFB020] to-[#7B5CFF] text-white shadow-[0_20px_70px_rgba(123,92,255,.45)]">
+        className="ml-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#2563eb] via-[#06b6d4] to-[#4f46e5] text-white shadow-[0_20px_70px_rgba(37,99,235,.5)]">
         <motion.div animate={{ rotate: open ? 90 : 0 }} transition={{ duration: 0.25 }}>
           {open ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
         </motion.div>
@@ -1113,10 +1113,10 @@ function SectionTitle({ eyebrow, title, accent, subtitle }) {
   return (
     <div className="mx-auto mb-12 max-w-3xl text-center">
       <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-        className="mb-3 text-xs font-semibold uppercase tracking-[.35em] text-[#FFB020]">{eyebrow}</motion.p>
+        className="mb-3 text-xs font-semibold uppercase tracking-[.35em] text-[#06b6d4]">{eyebrow}</motion.p>
       <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
         className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-        {title} <span className="text-[#FF5A4D]">{accent}</span>
+        {title} <span className="bg-gradient-to-r from-[#2563eb] to-[#06b6d4] bg-clip-text text-transparent">{accent}</span>
       </motion.h2>
       {subtitle && (
         <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
@@ -1140,17 +1140,18 @@ export default function YasasLandingPage() {
   const hrefs = ["#solutions", "#how", "#results", "#pricing", "#faq"];
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#050b14] font-sans text-white selection:bg-[#FF5A4D]/40">
+    <div className="min-h-screen overflow-x-hidden bg-[#050c1a] font-sans text-white selection:bg-[#2563eb]/40">
       <ScrollProgress />
       <CursorGlow />
       {/* 3D WebGL background */}
-      <Suspense fallback={<div className="fixed inset-0 z-0 bg-[#050b14]" />}>
+      <Suspense fallback={<div className="fixed inset-0 z-0 bg-[#050c1a]" />}>
         <ThreeScene />
       </Suspense>
-      {/* Subtle overlay to keep text readable */}
+      {/* Subtle overlay — darkens edges so text stays readable over WebGL */}
       <div className="pointer-events-none fixed inset-0 z-[1]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(5,11,20,0.6)_0%,transparent_60%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#050b14] to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_30%,rgba(5,12,26,0.55)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#050c1a] to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#050c1a]/70 to-transparent" />
       </div>
 
       {/* ── HEADER ── */}
@@ -1162,7 +1163,7 @@ export default function YasasLandingPage() {
           {t.nav.map((item, i) => (
             <motion.a key={item} href={hrefs[i]}
               initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="relative transition hover:text-white after:absolute after:bottom-[-3px] after:left-0 after:h-[1px] after:w-0 after:bg-[#FF5A4D] after:transition-all hover:after:w-full">
+              className="relative transition hover:text-white after:absolute after:bottom-[-3px] after:left-0 after:h-[1px] after:w-0 after:bg-[#06b6d4] after:transition-all hover:after:w-full">
               {item}
             </motion.a>
           ))}
@@ -1180,8 +1181,8 @@ export default function YasasLandingPage() {
         <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-2 lg:gap-14 lg:pt-24">
           <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center lg:text-left">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#7B5CFF]/40 bg-[#7B5CFF]/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[.2em] text-white/80 sm:text-xs sm:tracking-[.25em]">
-              <Sparkles className="h-4 w-4 shrink-0 text-[#FFB020]" /> {t.badge}
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#06b6d4]/40 bg-[#06b6d4]/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[.2em] text-white/80 sm:text-xs sm:tracking-[.25em]">
+              <Sparkles className="h-4 w-4 shrink-0 text-[#06b6d4]" /> {t.badge}
             </motion.div>
             <h1 className="mx-auto max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl lg:mx-0 lg:text-7xl">
               {t.hero}{" "}
@@ -1203,7 +1204,7 @@ export default function YasasLandingPage() {
               className="mt-8 flex flex-wrap justify-center gap-5 text-sm text-white/60 lg:justify-start">
               {t.bullets.map((x, i) => (
                 <motion.div key={x} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 + i * 0.1 }} className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-[#7B5CFF]" />{x}
+                  <Check className="h-4 w-4 text-[#06b6d4]" />{x}
                 </motion.div>
               ))}
             </motion.div>
@@ -1233,15 +1234,15 @@ export default function YasasLandingPage() {
               const Icon = serviceIcons[i];
               return (
                 <Reveal key={title} delay={i * 0.07}>
-                  <TiltCard className="group h-full rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur transition-colors hover:border-[#7B5CFF]/50 hover:bg-white/[0.06]">
+                  <TiltCard className="group h-full rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur transition-colors hover:border-[#2563eb]/50 hover:bg-white/[0.06]">
                     <motion.div whileHover={{ scale: 1.15, rotate: 5 }} transition={{ type: "spring", stiffness: 300 }}
-                      className="mb-5 grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-[#101A30] text-[#FF5A4D] group-hover:border-[#7B5CFF]/40 group-hover:text-[#FFB020]">
+                      className="mb-5 grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-[#101A30] text-[#2563eb] group-hover:border-[#2563eb]/40 group-hover:text-[#06b6d4]">
                       <Icon className="h-6 w-6" />
                     </motion.div>
                     <h3 className="text-xl font-bold text-white">{title}</h3>
                     <p className="mt-3 leading-7 text-white/55">{text}</p>
                     <motion.button onClick={() => setOpenService(i)} whileHover={{ x: 4 }}
-                      className="mt-6 flex items-center text-sm font-bold text-[#7B5CFF]">
+                      className="mt-6 flex items-center text-sm font-bold text-[#06b6d4]">
                       {t.learn} <ArrowRight className="ml-1 h-4 w-4" />
                     </motion.button>
                   </TiltCard>
@@ -1259,7 +1260,7 @@ export default function YasasLandingPage() {
               <Reveal key={title} delay={i * 0.12} direction={i === 0 ? "left" : i === 2 ? "right" : "up"}>
                 <motion.div whileHover={{ y: -10 }} className="relative h-full rounded-[1.6rem] border border-white/10 bg-white/[0.035] p-8">
                   <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ type: "spring", delay: 0.2 + i * 0.12 }}
-                    className="mb-8 grid h-16 w-16 place-items-center rounded-full border border-[#FF5A4D]/40 bg-[#FF5A4D]/10 text-2xl font-black text-white">
+                    className="mb-8 grid h-16 w-16 place-items-center rounded-full border border-[#2563eb]/40 bg-[#2563eb]/10 text-2xl font-black text-white">
                     0{i + 1}
                   </motion.div>
                   <h3 className="text-2xl font-bold text-white">{title}</h3>
@@ -1292,7 +1293,7 @@ export default function YasasLandingPage() {
                 <div className="mt-6 rounded-2xl border border-white/10 bg-[#0D172A]/70 p-6">
                   <div className="grid gap-8 lg:grid-cols-[1fr_2fr_1fr] lg:items-center">
                     <div className="flex items-center gap-4">
-                      <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#FF5A4D] to-[#7B5CFF] sm:h-20 sm:w-20">
+                      <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#2563eb] to-[#4f46e5] sm:h-20 sm:w-20">
                         <YasasLogo small iconOnly />
                       </div>
                       <div>
@@ -1303,7 +1304,7 @@ export default function YasasLandingPage() {
                     <blockquote className="text-xl font-bold leading-8 text-white sm:text-2xl sm:leading-9">"{t.testimonial}"</blockquote>
                     <div className="space-y-2 text-sm text-white/65">
                       {[["3X", "more qualified leads"], ["2X", "more booked calls"], ["187%", "revenue lift"]].map(([n, l]) => (
-                        <p key={l}><span className="font-bold text-[#FFB020]">{n}</span> {l}</p>
+                        <p key={l}><span className="font-bold text-[#06b6d4]">{n}</span> {l}</p>
                       ))}
                     </div>
                   </div>
@@ -1320,10 +1321,10 @@ export default function YasasLandingPage() {
             {t.plans.map(([name, price, items], idx) => (
               <Reveal key={name} delay={idx * 0.1}>
                 <motion.div whileHover={{ y: -12 }}
-                  className={`relative h-full rounded-[2rem] border p-8 ${idx === 1 ? "gradient-border-spin border-[#FF5A4D]/40 bg-[#FF5A4D]/10 shadow-[0_0_80px_rgba(255,90,77,.18)]" : "border-white/10 bg-white/[0.035]"}`}>
+                  className={`relative h-full rounded-[2rem] border p-8 ${idx === 1 ? "gradient-border-spin border-[#2563eb]/40 bg-[#2563eb]/10 shadow-[0_0_80px_rgba(255,90,77,.18)]" : "border-white/10 bg-white/[0.035]"}`}>
                   {idx === 1 && (
                     <motion.div animate={{ opacity: [0.6, 1, 0.6] }} transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF5A4D] to-[#FFB020] px-4 py-1 text-xs font-bold text-white shadow-lg">
+                      className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#2563eb] to-[#06b6d4] px-4 py-1 text-xs font-bold text-white shadow-lg">
                       Most popular
                     </motion.div>
                   )}
@@ -1336,11 +1337,11 @@ export default function YasasLandingPage() {
                     {items.map((item, fi) => (
                       <motion.p key={item} className="flex items-center gap-3 text-white/65"
                         initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: fi * 0.06 }}>
-                        <Check className="h-5 w-5 shrink-0 text-[#FFB020]" />{item}
+                        <Check className="h-5 w-5 shrink-0 text-[#06b6d4]" />{item}
                       </motion.p>
                     ))}
                   </div>
-                  <a href="#booking" className={`mt-8 inline-flex w-full items-center justify-center rounded-2xl px-5 py-4 font-bold transition ${idx === 1 ? "bg-[#FF5A4D] text-white hover:bg-[#ff4133]" : "border border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.09]"}`}>
+                  <a href="#booking" className={`mt-8 inline-flex w-full items-center justify-center rounded-2xl px-5 py-4 font-bold transition ${idx === 1 ? "bg-[#2563eb] text-white hover:bg-[#1d4ed8]" : "border border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.09]"}`}>
                     {t.start} <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </motion.div>
@@ -1353,12 +1354,12 @@ export default function YasasLandingPage() {
         <section id="booking" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
           <Reveal>
             <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-6 text-center shadow-2xl sm:p-8 md:p-14">
-              <GradientOrb className="left-10 top-0 h-72 w-72 bg-[#7B5CFF]" />
-              <GradientOrb className="right-0 bottom-0 h-72 w-72 bg-[#FF5A4D]" />
+              <GradientOrb className="left-10 top-0 h-72 w-72 bg-[#2563eb]" />
+              <GradientOrb className="right-0 bottom-0 h-72 w-72 bg-[#06b6d4]" />
               <div className="relative z-10">
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[.35em] text-[#FFB020]">{t.bookingEyebrow}</p>
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[.35em] text-[#06b6d4]">{t.bookingEyebrow}</p>
                 <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-6xl">
-                  {t.bookingTitle} <span className="text-[#FF5A4D]">{t.bookingAccent}</span>
+                  {t.bookingTitle} <span className="text-[#06b6d4]">{t.bookingAccent}</span>
                 </h2>
                 <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">{t.bookingSub}</p>
                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
@@ -1382,7 +1383,7 @@ export default function YasasLandingPage() {
             {t.faqs.map(([q, a], i) => (
               <Reveal key={q} delay={i * 0.06}>
                 <motion.div whileHover={{ scale: 1.005 }}
-                  className={`rounded-2xl border transition-colors ${faqOpen === i ? "border-[#7B5CFF]/40 bg-[#7B5CFF]/5" : "border-white/10 bg-white/[0.035]"}`}>
+                  className={`rounded-2xl border transition-colors ${faqOpen === i ? "border-[#2563eb]/40 bg-[#2563eb]/5" : "border-white/10 bg-white/[0.035]"}`}>
                   <button onClick={() => setFaqOpen(faqOpen === i ? -1 : i)}
                     className="flex w-full items-center justify-between gap-4 p-6 text-left font-bold text-white">
                     {q}
@@ -1427,7 +1428,7 @@ export default function YasasLandingPage() {
             <p className="text-sm text-white/50">{t.stayText}</p>
             <div className="mt-4 flex rounded-2xl border border-white/10 bg-white/[0.04] p-1">
               <input placeholder={t.emailPlaceholder} className="min-w-0 flex-1 bg-transparent px-3 text-sm text-white outline-none" />
-              <motion.button whileHover={{ scale: 1.1 }} className="rounded-xl bg-[#7B5CFF] px-4 py-2"><ArrowRight className="h-4 w-4" /></motion.button>
+              <motion.button whileHover={{ scale: 1.1 }} className="rounded-xl bg-[#2563eb] px-4 py-2"><ArrowRight className="h-4 w-4" /></motion.button>
             </div>
           </div>
         </div>
