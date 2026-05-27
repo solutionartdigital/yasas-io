@@ -674,13 +674,19 @@ function AnimatedBackground() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#081020]">
+      {/* ── Ambient background image ── */}
+      <img
+        src="/assets/ai-background.png"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.13] mix-blend-luminosity"
+      />
+      {/* Gradient overlays (keep design clean) */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(123,92,255,.22),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(255,90,77,.18),transparent_25%),radial-gradient(circle_at_45%_88%,rgba(255,176,32,.11),transparent_34%),linear-gradient(180deg,#081020_0%,#0A1020_52%,#050914_100%)]" />
-      <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:48px_48px]" />
+      <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:48px_48px]" />
       <motion.div className="absolute -left-24 top-24 h-[28rem] w-[28rem] rounded-full bg-[#7B5CFF]/25 blur-3xl" style={{ x: orb1X, y: orb1Y }} />
       <motion.div className="absolute right-0 top-40 h-[32rem] w-[32rem] rounded-full bg-[#FF5A4D]/18 blur-3xl" style={{ x: orb2X, y: orb2Y }} />
       <motion.div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-[#FFB020]/12 blur-3xl" animate={{ x: [0, 25, 0], y: [0, -35, 0], scale: [1, 1.1, 1] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} />
-      <motion.div className="absolute left-[-25%] top-[58%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent opacity-30" animate={{ x: ["-6%", "6%", "-6%"] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }} />
-      <motion.div className="absolute left-[-25%] top-[61%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#7B5CFF] to-transparent opacity-25" animate={{ x: ["6%", "-6%", "6%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
     </div>
   );
 }
@@ -1030,38 +1036,157 @@ function HeroVisual({ t }) {
       initial={{ opacity: 0, y: 30, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative mx-auto w-full max-w-[640px]"
+      className="relative mx-auto h-[540px] w-full max-w-[640px] overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_40px_120px_rgba(0,0,0,.7)]"
     >
-      {/* Grid: 2 panels side by side */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {/* Left: AI Voice Call */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 px-1">
-            <PhoneCall className="h-3.5 w-3.5 text-[#FF5A4D]" />
-            <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-white/40">AI Voice Agent</p>
-          </div>
-          <AIVoiceCallDemo />
-        </div>
+      {/* ── Receptionist image ── */}
+      <img
+        src="/assets/ai-receptionist.png"
+        alt="ARIA — AI Receptionist"
+        className="absolute inset-0 h-full w-full object-cover object-top"
+      />
 
-        {/* Right: WhatsApp */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 px-1">
-            <Smartphone className="h-3.5 w-3.5 text-[#25d366]" />
-            <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-white/40">WhatsApp Automation</p>
-          </div>
-          <WhatsAppDemo />
-        </div>
-      </div>
+      {/* ── Dark overlays for premium feel ── */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#081020]/85 via-[#081020]/30 to-[#081020]/60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#081020] via-transparent to-[#081020]/20" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(123,92,255,.12),transparent_55%)]" />
 
-      {/* Bottom: live activity bar */}
+      {/* ── Energy / data-flow lines ── */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        className="mt-4"
+        className="absolute left-[-25%] top-[38%] h-[1.5px] w-[150%] bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent"
+        animate={{ x: ["-8%", "8%", "-8%"], opacity: [0.15, 0.55, 0.15] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute left-[-25%] top-[58%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#7B5CFF] to-transparent"
+        animate={{ x: ["6%", "-6%", "6%"], opacity: [0.12, 0.45, 0.12] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute left-[-25%] top-[72%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#FFB020]/60 to-transparent"
+        animate={{ x: ["-4%", "4%", "-4%"], opacity: [0.08, 0.3, 0.08] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* ── Floating cards ── */}
+
+      {/* Card 1 — AI Voice Agent (top-left) */}
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-4 top-4 w-[180px] rounded-2xl border border-white/10 bg-[#081020]/80 p-3 shadow-[0_8px_32px_rgba(0,0,0,.6)] backdrop-blur-xl"
       >
-        <LiveActivity />
+        <div className="mb-2 flex items-center gap-2">
+          <motion.div
+            animate={{ boxShadow: ["0 0 0 0 rgba(255,90,77,0)", "0 0 0 6px rgba(255,90,77,.2)", "0 0 0 0 rgba(255,90,77,0)"] }}
+            transition={{ duration: 1.6, repeat: Infinity }}
+            className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#FF5A4D]/20 border border-[#FF5A4D]/40"
+          >
+            <PhoneCall className="h-3.5 w-3.5 text-[#FF5A4D]" />
+          </motion.div>
+          <div>
+            <p className="text-xs font-bold text-white">AI Voice Agent</p>
+            <p className="text-[9px] text-[#FF5A4D]">● Live call handling</p>
+          </div>
+        </div>
+        <div className="flex items-end gap-[2px] h-6">
+          {Array.from({ length: 22 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="w-[3px] flex-shrink-0 rounded-full bg-gradient-to-t from-[#FF5A4D] to-[#FFB020]"
+              animate={{ height: [2, Math.random() * 18 + 3, 2] }}
+              transition={{ duration: 0.4 + Math.random() * 0.4, repeat: Infinity, delay: i * 0.04, ease: "easeInOut" }}
+            />
+          ))}
+        </div>
       </motion.div>
+
+      {/* Card 2 — WhatsApp Automation (top-right) */}
+      <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+        className="absolute right-4 top-4 w-[196px] rounded-2xl border border-white/10 bg-[#0b1a11]/85 p-3 shadow-[0_8px_32px_rgba(0,0,0,.6)] backdrop-blur-xl"
+      >
+        <div className="mb-2 flex items-center gap-2">
+          <div className="grid h-7 w-7 place-items-center rounded-full bg-[#25d366]/20 border border-[#25d366]/30 text-sm">📲</div>
+          <div>
+            <p className="text-xs font-bold text-white">WhatsApp</p>
+            <p className="text-[9px] text-[#25d366]">● Automation flow</p>
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <div className="rounded-xl rounded-tl-sm bg-[#1f2c34] px-2.5 py-1.5 text-[10px] leading-4 text-white/80">
+            Thanks for reaching out. Pricing, availability or book a call?
+          </div>
+          <div className="ml-auto w-fit rounded-xl rounded-tr-sm bg-[#005c4b] px-2.5 py-1 text-[10px] text-white/85">
+            Pricing + availability
+          </div>
+          <div className="rounded-xl rounded-tl-sm bg-[#1f2c34] px-2.5 py-1.5 text-[10px] leading-4 text-white/80">
+            ✅ Sending details + booking a quick call now!
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Card 3 — Lead Pipeline (bottom-left) */}
+      <motion.div
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-16 left-4 w-[168px] rounded-2xl border border-white/10 bg-[#081020]/80 p-3 shadow-[0_8px_32px_rgba(0,0,0,.6)] backdrop-blur-xl"
+      >
+        <p className="mb-2.5 text-[9px] font-semibold uppercase tracking-widest text-white/40">Lead Pipeline</p>
+        {[
+          { label: "New Lead",   color: "#FFB020", done: true  },
+          { label: "AI Follow-up", color: "#7B5CFF", done: true  },
+          { label: "Booked Call",  color: "#10b981", done: false },
+        ].map(({ label, color, done }, i) => (
+          <motion.div
+            key={label}
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + i * 0.2 }}
+            className="mb-1.5 flex items-center gap-2"
+          >
+            <div className="h-1.5 w-1.5 rounded-full flex-shrink-0" style={{ background: color, boxShadow: `0 0 4px ${color}` }} />
+            <span className="flex-1 text-[10px] text-white/75">{label}</span>
+            {done && <Check className="h-3 w-3 flex-shrink-0" style={{ color }} />}
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Card 4 — CRM Sync (bottom-right) */}
+      <motion.div
+        animate={{ y: [0, -9, 0] }}
+        transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+        className="absolute bottom-16 right-4 w-[178px] rounded-2xl border border-[#7B5CFF]/25 bg-[#081020]/85 p-3 shadow-[0_8px_32px_rgba(123,92,255,.15)] backdrop-blur-xl"
+      >
+        <div className="mb-2 flex items-center gap-2">
+          <div className="grid h-7 w-7 place-items-center rounded-lg bg-[#7B5CFF]/20 text-sm">🗓️</div>
+          <div>
+            <p className="text-xs font-bold text-white">Appointment Booked</p>
+            <p className="text-[9px] text-[#7B5CFF]">CRM synced ✓</p>
+          </div>
+        </div>
+        <div className="space-y-1">
+          {[["Client", "James Walker"], ["Date", "Today 4:00 PM"], ["Status", "Confirmed"]].map(([k, v]) => (
+            <div key={k} className="flex items-center justify-between">
+              <span className="text-[9px] text-white/35">{k}</span>
+              <span className="text-[9px] font-semibold text-white/80">{v}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 flex items-center gap-1.5">
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+          />
+          <span className="text-[9px] text-emerald-400">Sent to CRM</span>
+        </div>
+      </motion.div>
+
+      {/* ── Live activity bar ── */}
+      <div className="absolute inset-x-0 bottom-0 px-3 pb-3">
+        <LiveActivity />
+      </div>
     </motion.div>
   );
 }
