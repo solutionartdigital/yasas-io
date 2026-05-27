@@ -813,14 +813,16 @@ function AIVoiceCallDemo() {
 
   useEffect(() => {
     if (lineIdx < CALL_LINES.length) {
-      const delay = lineIdx === 0 ? 1200 : 3800;
+      // Client lines appear quicker, AI lines take a beat to "think"
+      const isAI = CALL_LINES[lineIdx]?.speaker === "ai";
+      const delay = lineIdx === 0 ? 2000 : isAI ? 5500 : 3500;
       const t = setTimeout(() => {
         setShown(prev => [...prev, CALL_LINES[lineIdx]]);
         setLineIdx(i => i + 1);
       }, delay);
       return () => clearTimeout(t);
     } else {
-      const restart = setTimeout(() => { setShown([]); setLineIdx(0); setSeconds(0); }, 5000);
+      const restart = setTimeout(() => { setShown([]); setLineIdx(0); setSeconds(0); }, 8000);
       return () => clearTimeout(restart);
     }
   }, [lineIdx]);
@@ -1061,6 +1063,369 @@ function HeroVisual({ t }) {
         <LiveActivity />
       </motion.div>
     </motion.div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// AI RECEPTIONIST SHOWCASE
+// ─────────────────────────────────────────────
+const APPT_LIST = [
+  { name: "Sarah M.",  time: "10:00 AM", industry: "Dental" },
+  { name: "James K.", time: "2:00 PM",  industry: "HVAC"   },
+  { name: "Lisa R.",  time: "4:30 PM",  industry: "Legal"  },
+];
+
+const CHAT_SHOWCASE = [
+  { from: "user", text: "Hi! I'd like to know more about your services." },
+  { from: "ai",   text: "Sure! I'd be happy to help. What are you interested in?" },
+  { from: "user", text: "Interested in Pricing" },
+  { from: "ai",   text: "Great! I can share the details with you." },
+  { from: "ai",   text: "Would you like to schedule a quick call?" },
+];
+
+const AI_FEATURES = [
+  "Natural Conversations",
+  "Lead Qualification",
+  "Calendar Booking",
+  "CRM Sync",
+  "Smart Follow-ups",
+];
+
+function LiveCallPanel() {
+  return (
+    <motion.div
+      animate={{ y: [0, -8, 0] }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      className="rounded-2xl border border-white/10 bg-[#0a1628]/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,.5)] backdrop-blur-xl"
+    >
+      <div className="mb-3 flex items-center gap-3">
+        <motion.div
+          animate={{ boxShadow: ["0 0 0 0 rgba(255,90,77,0)", "0 0 0 8px rgba(255,90,77,.2)", "0 0 0 0 rgba(255,90,77,0)"] }}
+          transition={{ duration: 1.6, repeat: Infinity }}
+          className="grid h-9 w-9 place-items-center rounded-full bg-[#FF5A4D]/20 border border-[#FF5A4D]/40"
+        >
+          <PhoneCall className="h-4 w-4 text-[#FF5A4D]" />
+        </motion.div>
+        <div>
+          <p className="text-sm font-bold text-white">Live Call</p>
+          <p className="text-[10px] text-[#FF5A4D]">● AI answering now</p>
+        </div>
+      </div>
+      {/* Waveform */}
+      <div className="flex items-end gap-[2px] h-8">
+        {Array.from({ length: 32 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="w-[3px] rounded-full bg-gradient-to-t from-[#FF5A4D] to-[#FFB020] flex-shrink-0"
+            animate={{ height: [3, Math.random() * 24 + 4, 3] }}
+            transition={{ duration: 0.5 + Math.random() * 0.4, repeat: Infinity, delay: i * 0.035, ease: "easeInOut" }}
+          />
+        ))}
+      </div>
+      <p className="mt-2 text-[10px] text-white/40 font-mono">Qualifying lead · 01:24</p>
+    </motion.div>
+  );
+}
+
+function BookedAppointmentsPanel() {
+  return (
+    <motion.div
+      animate={{ y: [0, 6, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      className="rounded-2xl border border-white/10 bg-[#0a1628]/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,.5)] backdrop-blur-xl"
+    >
+      <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/40">Booked Appointments</p>
+      <div className="space-y-2.5">
+        {APPT_LIST.map((a, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + i * 0.15 }}
+            className="flex items-center gap-3"
+          >
+            <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#7B5CFF]/40 to-[#FF5A4D]/30 text-[10px] font-bold text-white">
+              {a.name[0]}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-white truncate">{a.name}</p>
+              <p className="text-[10px] text-white/40">{a.industry}</p>
+            </div>
+            <div className="flex items-center gap-1.5 text-[10px] text-[#FFB020]">
+              <CalendarDays className="h-3 w-3" />
+              {a.time}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function CRMPanel() {
+  return (
+    <motion.div
+      animate={{ y: [0, -5, 0] }}
+      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      className="rounded-2xl border border-white/10 bg-[#0a1628]/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,.5)] backdrop-blur-xl"
+    >
+      <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/40">CRM Overview</p>
+      <div className="flex items-center gap-4">
+        {/* Donut chart SVG */}
+        <svg width="52" height="52" viewBox="0 0 52 52" className="shrink-0">
+          <circle cx="26" cy="26" r="20" fill="none" stroke="#1a2340" strokeWidth="8" />
+          <motion.circle
+            cx="26" cy="26" r="20" fill="none"
+            stroke="url(#donut1)" strokeWidth="8"
+            strokeLinecap="round"
+            strokeDasharray="125.6"
+            initial={{ strokeDashoffset: 125.6 }}
+            animate={{ strokeDashoffset: 37.7 }}
+            transition={{ duration: 1.8, ease: "easeOut", delay: 0.5 }}
+            transform="rotate(-90 26 26)"
+          />
+          <defs>
+            <linearGradient id="donut1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#7B5CFF" />
+              <stop offset="100%" stopColor="#FFB020" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <div className="space-y-1.5">
+          {[["Total leads","48"],["Booked","31"],["Closed","17"]].map(([l,v]) => (
+            <div key={l} className="flex items-center justify-between gap-4">
+              <span className="text-[10px] text-white/50">{l}</span>
+              <span className="text-[10px] font-bold text-white">{v}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function AIFeaturesPanel() {
+  return (
+    <motion.div
+      animate={{ y: [0, -7, 0] }}
+      transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+      className="rounded-2xl border border-[#7B5CFF]/30 bg-[#0a1628]/90 p-4 shadow-[0_8px_40px_rgba(123,92,255,.12)] backdrop-blur-xl"
+    >
+      <div className="mb-3 flex items-center gap-2">
+        <div className="grid h-6 w-6 place-items-center rounded-lg bg-[#7B5CFF]/20">
+          <Sparkles className="h-3.5 w-3.5 text-[#7B5CFF]" />
+        </div>
+        <p className="text-sm font-bold text-white">AI Receptionist</p>
+      </div>
+      {/* Mini waveform */}
+      <div className="mb-3 flex items-end gap-[2px] h-6">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="w-[3px] rounded-full bg-gradient-to-t from-[#7B5CFF] to-[#FF5A4D] flex-shrink-0"
+            animate={{ height: [2, Math.random() * 14 + 3, 2] }}
+            transition={{ duration: 0.6 + Math.random() * 0.5, repeat: Infinity, delay: i * 0.05 }}
+          />
+        ))}
+      </div>
+      <div className="space-y-2">
+        {AI_FEATURES.map((f, i) => (
+          <motion.div
+            key={f}
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 + i * 0.1 }}
+            className="flex items-center gap-2"
+          >
+            <Check className="h-3.5 w-3.5 text-[#7B5CFF] shrink-0" />
+            <span className="text-xs text-white/75">{f}</span>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function ChatShowcasePanel() {
+  const [count, setCount] = useState(2);
+  useEffect(() => {
+    const id = setInterval(() => setCount(c => c < CHAT_SHOWCASE.length ? c + 1 : 2), 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <motion.div
+      animate={{ y: [0, 8, 0] }}
+      transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+      className="rounded-2xl border border-white/10 bg-[#0a1628]/90 p-4 shadow-[0_8px_40px_rgba(0,0,0,.5)] backdrop-blur-xl"
+    >
+      <div className="mb-3 flex gap-1.5">
+        <div className="h-2 w-2 rounded-full bg-[#FF5A4D]/70" />
+        <div className="h-2 w-2 rounded-full bg-[#FFB020]/70" />
+        <div className="h-2 w-2 rounded-full bg-emerald-400/70" />
+      </div>
+      <div className="space-y-2">
+        {CHAT_SHOWCASE.slice(0, count).map((m, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`flex ${m.from === "ai" ? "justify-end" : "justify-start"}`}
+          >
+            <div className={`max-w-[85%] rounded-xl px-2.5 py-1.5 text-[11px] leading-4 ${
+              m.from === "ai" ? "bg-[#25d366] text-white" : "bg-[#1f2c34] text-white/80"
+            }`}>
+              {m.text}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      {/* Action chips */}
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {["Book Call", "Follow Up Later"].map(label => (
+          <div key={label} className="flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-1 text-[10px] text-white/60">
+            {label === "Book Call" ? <CalendarDays className="h-2.5 w-2.5" /> : <PhoneCall className="h-2.5 w-2.5" />}
+            {label}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function AIAvatarCore() {
+  return (
+    <div className="relative flex flex-col items-center">
+      {/* Outer pulse rings */}
+      {[0, 1, 2].map(i => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full border border-[#7B5CFF]/20"
+          animate={{ scale: [1, 2.2], opacity: [0.4, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.8, ease: "easeOut" }}
+          style={{ width: 140, height: 140 }}
+        />
+      ))}
+
+      {/* Avatar circle */}
+      <div className="relative h-36 w-36 rounded-full bg-gradient-to-br from-[#7B5CFF]/20 via-[#3d1f8e]/30 to-[#FF5A4D]/10 shadow-[0_0_60px_rgba(123,92,255,.35)] border border-[#7B5CFF]/30 flex items-center justify-center">
+        {/* Inner glow */}
+        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_40%,rgba(123,92,255,.25),transparent_70%)]" />
+        {/* Icon */}
+        <div className="relative z-10 flex flex-col items-center gap-1">
+          <motion.div
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              {/* Head */}
+              <circle cx="26" cy="18" r="10" fill="none" stroke="#7B5CFF" strokeWidth="1.5" opacity="0.9" />
+              {/* Body */}
+              <path d="M10 46 C10 36 16 30 26 30 C36 30 42 36 42 46" fill="none" stroke="#7B5CFF" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
+              {/* Earpiece left */}
+              <path d="M14 16 C14 14 16 12 18 14" fill="none" stroke="#FF5A4D" strokeWidth="2" strokeLinecap="round" />
+              {/* Earpiece right / headset */}
+              <path d="M38 16 C38 14 36 12 34 14" fill="none" stroke="#FF5A4D" strokeWidth="2" strokeLinecap="round" />
+              {/* Mic boom */}
+              <path d="M14 16 L10 20 L9 24" fill="none" stroke="#FFB020" strokeWidth="1.5" strokeLinecap="round" />
+              <circle cx="9" cy="25" r="1.5" fill="#FFB020" />
+            </svg>
+          </motion.div>
+        </div>
+        {/* Rotating scan line */}
+        <motion.div
+          className="absolute inset-0 rounded-full border-2 border-transparent"
+          style={{ borderTopColor: "rgba(123,92,255,0.5)", borderRightColor: "rgba(255,90,77,0.2)" }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
+      {/* Name + status */}
+      <div className="mt-4 text-center">
+        <p className="text-base font-bold tracking-wide text-white">ARIA</p>
+        <p className="text-xs text-white/50">AI Agent · yasas.io</p>
+        <div className="mt-2 flex items-center justify-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_4px_#4ade80]" />
+          <span className="text-[10px] font-semibold text-emerald-400">Online 24/7</span>
+        </div>
+      </div>
+
+      {/* Bottom action bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="mt-6 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#0a1628]/80 px-4 py-3 backdrop-blur-xl"
+      >
+        {[
+          { Icon: PhoneCall,    color: "#FF5A4D" },
+          { Icon: CalendarDays, color: "#FFB020" },
+          { Icon: MessageSquare,color: "#7B5CFF" },
+          { Icon: BarChart3,    color: "#10b981" },
+          { Icon: Check,        color: "#a78bfa" },
+        ].map(({ Icon, color }, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.15 }}
+            className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.05] cursor-pointer"
+            style={{ color }}
+          >
+            <Icon className="h-4 w-4" />
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function AIReceptionistShowcase({ t }) {
+  return (
+    <Reveal>
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        {/* Background glow */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,90,77,.06),transparent_50%),radial-gradient(ellipse_at_70%_50%,rgba(123,92,255,.07),transparent_50%)]" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          {/* Header */}
+          <div className="mb-14 text-center">
+            <motion.p className="mb-3 text-xs font-semibold uppercase tracking-[.35em] text-[#FFB020]">
+              AI Receptionist
+            </motion.p>
+            <h2 className="text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+              Meet <span className="bg-gradient-to-r from-[#FF5A4D] via-[#FFB020] to-[#7B5CFF] bg-clip-text text-transparent">ARIA</span>
+              {" "}— your 24/7 AI agent
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-white/55 leading-7">
+              Answers calls, chats and WhatsApp messages. Qualifies leads, books appointments and syncs your CRM — while you focus on the work.
+            </p>
+          </div>
+
+          {/* Main layout: panels + avatar */}
+          <div className="relative flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:justify-between">
+
+            {/* LEFT PANELS */}
+            <div className="flex w-full flex-col gap-4 lg:w-64 lg:pt-8">
+              <LiveCallPanel />
+              <BookedAppointmentsPanel />
+              <CRMPanel />
+            </div>
+
+            {/* CENTER AVATAR */}
+            <div className="flex shrink-0 justify-center lg:px-8">
+              <AIAvatarCore />
+            </div>
+
+            {/* RIGHT PANELS */}
+            <div className="flex w-full flex-col gap-4 lg:w-64 lg:pt-8">
+              <AIFeaturesPanel />
+              <ChatShowcasePanel />
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </Reveal>
   );
 }
 
@@ -1412,6 +1777,9 @@ export default function YasasLandingPage() {
             </div>
           </section>
         </Reveal>
+
+        {/* ── AI RECEPTIONIST SHOWCASE ── */}
+        <AIReceptionistShowcase t={t} />
 
         {/* ── SOLUTIONS ── */}
         <section id="solutions" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
