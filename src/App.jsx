@@ -813,14 +813,14 @@ function AIVoiceCallDemo() {
 
   useEffect(() => {
     if (lineIdx < CALL_LINES.length) {
-      const delay = lineIdx === 0 ? 800 : 2400;
+      const delay = lineIdx === 0 ? 1200 : 3800;
       const t = setTimeout(() => {
         setShown(prev => [...prev, CALL_LINES[lineIdx]]);
         setLineIdx(i => i + 1);
       }, delay);
       return () => clearTimeout(t);
     } else {
-      const restart = setTimeout(() => { setShown([]); setLineIdx(0); setSeconds(0); }, 3000);
+      const restart = setTimeout(() => { setShown([]); setLineIdx(0); setSeconds(0); }, 5000);
       return () => clearTimeout(restart);
     }
   }, [lineIdx]);
@@ -925,7 +925,7 @@ function WhatsAppDemo() {
 
   useEffect(() => {
     if (count >= WA_FLOW.length) {
-      const restart = setTimeout(() => setCount(0), 4000);
+      const restart = setTimeout(() => setCount(0), 6000);
       return () => clearTimeout(restart);
     }
     const isAI = WA_FLOW[count]?.from === "ai";
@@ -934,10 +934,10 @@ function WhatsAppDemo() {
       const t1 = setTimeout(() => {
         setTyping(false);
         setCount(c => c + 1);
-      }, 1600);
+      }, 2800);
       return () => clearTimeout(t1);
     } else {
-      const t2 = setTimeout(() => setCount(c => c + 1), 1200);
+      const t2 = setTimeout(() => setCount(c => c + 1), 2200);
       return () => clearTimeout(t2);
     }
   }, [count]);
