@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, Suspense } from "react";
-import ThreeScene from "./ThreeScene";
+// ThreeScene removed — using image background
 import {
   motion,
   AnimatePresence,
@@ -673,20 +673,36 @@ function AnimatedBackground() {
   }, [mouseX, mouseY]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#081020]">
-      {/* ── Ambient background image ── */}
-      <img
-        src="/assets/ai-background.png"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover opacity-[0.13] mix-blend-luminosity"
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#04050f]">
+      {/* ── Main background: animated fiber-optic streams image ── */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{ scale: [1, 1.04, 1], x: [0, -12, 0] }}
+        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <img
+          src="/assets/ai-background.png"
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover"
+        />
+      </motion.div>
+
+      {/* ── Dark vignette so text stays readable ── */}
+      <div className="absolute inset-0 bg-[#04050f]/52" />
+
+      {/* ── Brand color tint layers ── */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(123,92,255,.18),transparent_35%),radial-gradient(circle_at_80%_75%,rgba(255,90,77,.12),transparent_30%)]" />
+
+      {/* ── Animated orbs (subtle, complement the streams) ── */}
+      <motion.div
+        className="absolute -left-24 top-24 h-[22rem] w-[22rem] rounded-full bg-[#7B5CFF]/15 blur-3xl"
+        style={{ x: orb1X, y: orb1Y }}
       />
-      {/* Gradient overlays (keep design clean) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(123,92,255,.22),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(255,90,77,.18),transparent_25%),radial-gradient(circle_at_45%_88%,rgba(255,176,32,.11),transparent_34%),linear-gradient(180deg,#081020_0%,#0A1020_52%,#050914_100%)]" />
-      <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.8)_1px,transparent_1px)] [background-size:48px_48px]" />
-      <motion.div className="absolute -left-24 top-24 h-[28rem] w-[28rem] rounded-full bg-[#7B5CFF]/25 blur-3xl" style={{ x: orb1X, y: orb1Y }} />
-      <motion.div className="absolute right-0 top-40 h-[32rem] w-[32rem] rounded-full bg-[#FF5A4D]/18 blur-3xl" style={{ x: orb2X, y: orb2Y }} />
-      <motion.div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-[#FFB020]/12 blur-3xl" animate={{ x: [0, 25, 0], y: [0, -35, 0], scale: [1, 1.1, 1] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} />
+      <motion.div
+        className="absolute right-0 top-40 h-[26rem] w-[26rem] rounded-full bg-[#FF5A4D]/10 blur-3xl"
+        style={{ x: orb2X, y: orb2Y }}
+      />
     </div>
   );
 }
@@ -1036,157 +1052,27 @@ function HeroVisual({ t }) {
       initial={{ opacity: 0, y: 30, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative mx-auto h-[540px] w-full max-w-[640px] overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_40px_120px_rgba(0,0,0,.7)]"
+      className="relative mx-auto w-full max-w-[640px]"
     >
-      {/* ── Receptionist image ── */}
-      <img
-        src="/assets/ai-receptionist.png"
-        alt="ARIA — AI Receptionist"
-        className="absolute inset-0 h-full w-full object-cover object-top"
-      />
-
-      {/* ── Dark overlays for premium feel ── */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#081020]/85 via-[#081020]/30 to-[#081020]/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#081020] via-transparent to-[#081020]/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(123,92,255,.12),transparent_55%)]" />
-
-      {/* ── Energy / data-flow lines ── */}
-      <motion.div
-        className="absolute left-[-25%] top-[38%] h-[1.5px] w-[150%] bg-gradient-to-r from-transparent via-[#FF5A4D] to-transparent"
-        animate={{ x: ["-8%", "8%", "-8%"], opacity: [0.15, 0.55, 0.15] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute left-[-25%] top-[58%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#7B5CFF] to-transparent"
-        animate={{ x: ["6%", "-6%", "6%"], opacity: [0.12, 0.45, 0.12] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute left-[-25%] top-[72%] h-px w-[150%] bg-gradient-to-r from-transparent via-[#FFB020]/60 to-transparent"
-        animate={{ x: ["-4%", "4%", "-4%"], opacity: [0.08, 0.3, 0.08] }}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* ── Floating cards ── */}
-
-      {/* Card 1 — AI Voice Agent (top-left) */}
-      <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-4 top-4 w-[180px] rounded-2xl border border-white/10 bg-[#081020]/80 p-3 shadow-[0_8px_32px_rgba(0,0,0,.6)] backdrop-blur-xl"
-      >
-        <div className="mb-2 flex items-center gap-2">
-          <motion.div
-            animate={{ boxShadow: ["0 0 0 0 rgba(255,90,77,0)", "0 0 0 6px rgba(255,90,77,.2)", "0 0 0 0 rgba(255,90,77,0)"] }}
-            transition={{ duration: 1.6, repeat: Infinity }}
-            className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#FF5A4D]/20 border border-[#FF5A4D]/40"
-          >
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 px-1">
             <PhoneCall className="h-3.5 w-3.5 text-[#FF5A4D]" />
-          </motion.div>
-          <div>
-            <p className="text-xs font-bold text-white">AI Voice Agent</p>
-            <p className="text-[9px] text-[#FF5A4D]">● Live call handling</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-white/50">AI Voice Agent</p>
           </div>
+          <AIVoiceCallDemo />
         </div>
-        <div className="flex items-end gap-[2px] h-6">
-          {Array.from({ length: 22 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-[3px] flex-shrink-0 rounded-full bg-gradient-to-t from-[#FF5A4D] to-[#FFB020]"
-              animate={{ height: [2, Math.random() * 18 + 3, 2] }}
-              transition={{ duration: 0.4 + Math.random() * 0.4, repeat: Infinity, delay: i * 0.04, ease: "easeInOut" }}
-            />
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Card 2 — WhatsApp Automation (top-right) */}
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-        className="absolute right-4 top-4 w-[196px] rounded-2xl border border-white/10 bg-[#0b1a11]/85 p-3 shadow-[0_8px_32px_rgba(0,0,0,.6)] backdrop-blur-xl"
-      >
-        <div className="mb-2 flex items-center gap-2">
-          <div className="grid h-7 w-7 place-items-center rounded-full bg-[#25d366]/20 border border-[#25d366]/30 text-sm">📲</div>
-          <div>
-            <p className="text-xs font-bold text-white">WhatsApp</p>
-            <p className="text-[9px] text-[#25d366]">● Automation flow</p>
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 px-1">
+            <Smartphone className="h-3.5 w-3.5 text-[#25d366]" />
+            <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-white/50">WhatsApp Automation</p>
           </div>
+          <WhatsAppDemo />
         </div>
-        <div className="space-y-1.5">
-          <div className="rounded-xl rounded-tl-sm bg-[#1f2c34] px-2.5 py-1.5 text-[10px] leading-4 text-white/80">
-            Thanks for reaching out. Pricing, availability or book a call?
-          </div>
-          <div className="ml-auto w-fit rounded-xl rounded-tr-sm bg-[#005c4b] px-2.5 py-1 text-[10px] text-white/85">
-            Pricing + availability
-          </div>
-          <div className="rounded-xl rounded-tl-sm bg-[#1f2c34] px-2.5 py-1.5 text-[10px] leading-4 text-white/80">
-            ✅ Sending details + booking a quick call now!
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Card 3 — Lead Pipeline (bottom-left) */}
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-16 left-4 w-[168px] rounded-2xl border border-white/10 bg-[#081020]/80 p-3 shadow-[0_8px_32px_rgba(0,0,0,.6)] backdrop-blur-xl"
-      >
-        <p className="mb-2.5 text-[9px] font-semibold uppercase tracking-widest text-white/40">Lead Pipeline</p>
-        {[
-          { label: "New Lead",   color: "#FFB020", done: true  },
-          { label: "AI Follow-up", color: "#7B5CFF", done: true  },
-          { label: "Booked Call",  color: "#10b981", done: false },
-        ].map(({ label, color, done }, i) => (
-          <motion.div
-            key={label}
-            initial={{ opacity: 0, x: -8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 + i * 0.2 }}
-            className="mb-1.5 flex items-center gap-2"
-          >
-            <div className="h-1.5 w-1.5 rounded-full flex-shrink-0" style={{ background: color, boxShadow: `0 0 4px ${color}` }} />
-            <span className="flex-1 text-[10px] text-white/75">{label}</span>
-            {done && <Check className="h-3 w-3 flex-shrink-0" style={{ color }} />}
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Card 4 — CRM Sync (bottom-right) */}
-      <motion.div
-        animate={{ y: [0, -9, 0] }}
-        transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-        className="absolute bottom-16 right-4 w-[178px] rounded-2xl border border-[#7B5CFF]/25 bg-[#081020]/85 p-3 shadow-[0_8px_32px_rgba(123,92,255,.15)] backdrop-blur-xl"
-      >
-        <div className="mb-2 flex items-center gap-2">
-          <div className="grid h-7 w-7 place-items-center rounded-lg bg-[#7B5CFF]/20 text-sm">🗓️</div>
-          <div>
-            <p className="text-xs font-bold text-white">Appointment Booked</p>
-            <p className="text-[9px] text-[#7B5CFF]">CRM synced ✓</p>
-          </div>
-        </div>
-        <div className="space-y-1">
-          {[["Client", "James Walker"], ["Date", "Today 4:00 PM"], ["Status", "Confirmed"]].map(([k, v]) => (
-            <div key={k} className="flex items-center justify-between">
-              <span className="text-[9px] text-white/35">{k}</span>
-              <span className="text-[9px] font-semibold text-white/80">{v}</span>
-            </div>
-          ))}
-        </div>
-        <div className="mt-2 flex items-center gap-1.5">
-          <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="h-1.5 w-1.5 rounded-full bg-emerald-400"
-          />
-          <span className="text-[9px] text-emerald-400">Sent to CRM</span>
-        </div>
-      </motion.div>
-
-      {/* ── Live activity bar ── */}
-      <div className="absolute inset-x-0 bottom-0 px-3 pb-3">
-        <LiveActivity />
       </div>
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="mt-4">
+        <LiveActivity />
+      </motion.div>
     </motion.div>
   );
 }
@@ -1421,57 +1307,68 @@ function ChatShowcasePanel() {
 function AIAvatarCore() {
   return (
     <div className="relative flex flex-col items-center">
-      {/* Outer pulse rings */}
-      {[0, 1, 2].map(i => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full border border-[#7B5CFF]/20"
-          animate={{ scale: [1, 2.2], opacity: [0.4, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.8, ease: "easeOut" }}
-          style={{ width: 140, height: 140 }}
-        />
-      ))}
+      {/* Ambient glow behind image */}
+      <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_50%_60%,rgba(123,92,255,.35),transparent_65%)] blur-2xl" />
+      <div className="absolute -inset-4 rounded-3xl bg-[radial-gradient(ellipse_at_50%_70%,rgba(255,90,77,.18),transparent_60%)] blur-3xl" />
 
-      {/* Avatar circle */}
-      <div className="relative h-36 w-36 rounded-full bg-gradient-to-br from-[#7B5CFF]/20 via-[#3d1f8e]/30 to-[#FF5A4D]/10 shadow-[0_0_60px_rgba(123,92,255,.35)] border border-[#7B5CFF]/30 flex items-center justify-center">
-        {/* Inner glow */}
-        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_40%,rgba(123,92,255,.25),transparent_70%)]" />
-        {/* Icon */}
-        <div className="relative z-10 flex flex-col items-center gap-1">
-          <motion.div
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-              {/* Head */}
-              <circle cx="26" cy="18" r="10" fill="none" stroke="#7B5CFF" strokeWidth="1.5" opacity="0.9" />
-              {/* Body */}
-              <path d="M10 46 C10 36 16 30 26 30 C36 30 42 36 42 46" fill="none" stroke="#7B5CFF" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-              {/* Earpiece left */}
-              <path d="M14 16 C14 14 16 12 18 14" fill="none" stroke="#FF5A4D" strokeWidth="2" strokeLinecap="round" />
-              {/* Earpiece right / headset */}
-              <path d="M38 16 C38 14 36 12 34 14" fill="none" stroke="#FF5A4D" strokeWidth="2" strokeLinecap="round" />
-              {/* Mic boom */}
-              <path d="M14 16 L10 20 L9 24" fill="none" stroke="#FFB020" strokeWidth="1.5" strokeLinecap="round" />
-              <circle cx="9" cy="25" r="1.5" fill="#FFB020" />
-            </svg>
-          </motion.div>
+      {/* Receptionist image */}
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="relative"
+      >
+        <div className="relative w-[260px] overflow-hidden sm:w-[300px]">
+          <img
+            src="/assets/ai-receptionist.png"
+            alt="ARIA — AI Receptionist"
+            className="relative z-10 h-full w-full object-cover object-top"
+            style={{ maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)" }}
+          />
+          {/* Side fades */}
+          <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-[#04050f]/70 via-transparent to-[#04050f]/70" />
         </div>
-        {/* Rotating scan line */}
+
+        {/* Floating status badge */}
         <motion.div
-          className="absolute inset-0 rounded-full border-2 border-transparent"
-          style={{ borderTopColor: "rgba(123,92,255,0.5)", borderRightColor: "rgba(255,90,77,0.2)" }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5 }}
+          className="absolute -right-4 top-8 z-30 flex items-center gap-2 rounded-2xl border border-white/15 bg-[#0a1628]/90 px-3 py-2 shadow-xl backdrop-blur-xl"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+          </span>
+          <span className="text-[11px] font-semibold text-emerald-400">Live · Handling calls</span>
+        </motion.div>
+
+        {/* Waveform badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.8 }}
+          className="absolute -left-6 top-20 z-30 flex items-center gap-2 rounded-2xl border border-[#7B5CFF]/30 bg-[#0a1628]/90 px-3 py-2 shadow-xl backdrop-blur-xl"
+        >
+          <PhoneCall className="h-3 w-3 text-[#FF5A4D]" />
+          <div className="flex items-end gap-[2px]">
+            {[3,5,7,4,6,8,5,3,6,4].map((h, i) => (
+              <motion.div
+                key={i}
+                className="w-[2px] rounded-full bg-[#7B5CFF]"
+                animate={{ height: [`${h}px`, `${h * 2}px`, `${h}px`] }}
+                transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.07 }}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
 
       {/* Name + status */}
-      <div className="mt-4 text-center">
-        <p className="text-base font-bold tracking-wide text-white">ARIA</p>
-        <p className="text-xs text-white/50">AI Agent · yasas.io</p>
+      <div className="relative z-10 -mt-6 text-center">
+        <p className="text-lg font-black tracking-wide text-white drop-shadow-lg">ARIA</p>
+        <p className="text-xs text-white/50">AI Receptionist · yasas.io</p>
         <div className="mt-2 flex items-center justify-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_4px_#4ade80]" />
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#4ade80]" />
           <span className="text-[10px] font-semibold text-emerald-400">Online 24/7</span>
         </div>
       </div>
@@ -1481,14 +1378,14 @@ function AIAvatarCore() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="mt-6 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#0a1628]/80 px-4 py-3 backdrop-blur-xl"
+        className="relative z-10 mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#0a1628]/80 px-4 py-3 backdrop-blur-xl"
       >
         {[
-          { Icon: PhoneCall,    color: "#FF5A4D" },
-          { Icon: CalendarDays, color: "#FFB020" },
-          { Icon: MessageSquare,color: "#7B5CFF" },
-          { Icon: BarChart3,    color: "#10b981" },
-          { Icon: Check,        color: "#a78bfa" },
+          { Icon: PhoneCall,     color: "#FF5A4D" },
+          { Icon: CalendarDays,  color: "#FFB020" },
+          { Icon: MessageSquare, color: "#7B5CFF" },
+          { Icon: BarChart3,     color: "#10b981" },
+          { Icon: Check,         color: "#a78bfa" },
         ].map(({ Icon, color }, i) => (
           <motion.div
             key={i}
@@ -1821,14 +1718,10 @@ export default function YasasLandingPage() {
     <div className="min-h-screen overflow-x-hidden bg-[#050b14] font-sans text-white selection:bg-[#FF5A4D]/40">
       <ScrollProgress />
       <CursorGlow />
-      {/* 3D WebGL background */}
-      <Suspense fallback={<div className="fixed inset-0 z-0 bg-[#050b14]" />}>
-        <ThreeScene />
-      </Suspense>
-      {/* Subtle overlay to keep text readable */}
+      {/* Image background overlay for readability */}
       <div className="pointer-events-none fixed inset-0 z-[1]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(5,11,20,0.6)_0%,transparent_60%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#050b14] to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(8,16,32,0.55)_0%,transparent_60%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#081020] to-transparent" />
       </div>
 
       {/* ── HEADER ── */}
