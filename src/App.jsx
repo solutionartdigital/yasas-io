@@ -1325,7 +1325,10 @@ function AIAvatarCore() {
           alt="ARIA — AI Receptionist"
           loading="lazy"
           decoding="async"
-          className="relative z-10 w-[260px] sm:w-[300px] drop-shadow-[0_0_40px_rgba(123,92,255,0.5)]"
+          className="relative z-10 w-[260px] sm:w-[300px]"
+          style={{
+            filter: "drop-shadow(0 0 36px rgba(123,92,255,0.6)) drop-shadow(0 0 16px rgba(255,90,77,0.3))",
+          }}
         />
 
         {/* Live badge — top right */}
