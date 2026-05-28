@@ -691,19 +691,29 @@ function AnimatedBackground() {
         />
       </motion.div>
 
-      {/* ── Dark vignette so text stays readable ── */}
-      <div className="absolute inset-0 bg-[#04050f]/52" />
+      {/* ── Dark vignette — lighter so the image breathes ── */}
+      <div className="absolute inset-0 bg-[#04050f]/38" />
 
-      {/* ── Brand color tint layers ── */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(123,92,255,.18),transparent_35%),radial-gradient(circle_at_80%_75%,rgba(255,90,77,.12),transparent_30%)]" />
+      {/* ── Subtle grid overlay ── */}
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(180,160,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(180,160,255,1) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      {/* ── Animated orbs (subtle, complement the streams) ── */}
+      {/* ── Brand color radial gradients (stronger than before) ── */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_18%,rgba(123,92,255,.28),transparent_42%),radial-gradient(ellipse_at_82%_72%,rgba(255,90,77,.18),transparent_38%),radial-gradient(ellipse_at_50%_50%,rgba(255,176,32,.07),transparent_55%)]" />
+
+      {/* ── Animated orbs ── */}
       <motion.div
-        className="absolute -left-24 top-24 h-[22rem] w-[22rem] rounded-full bg-[#7B5CFF]/15 blur-3xl"
+        className="absolute -left-20 top-20 h-[28rem] w-[28rem] rounded-full bg-[#7B5CFF]/22 blur-3xl"
         style={{ x: orb1X, y: orb1Y }}
       />
       <motion.div
-        className="absolute right-0 top-40 h-[26rem] w-[26rem] rounded-full bg-[#FF5A4D]/10 blur-3xl"
+        className="absolute right-0 top-36 h-[32rem] w-[32rem] rounded-full bg-[#FF5A4D]/14 blur-3xl"
         style={{ x: orb2X, y: orb2Y }}
       />
     </div>
