@@ -3,20 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Security headers (meta fallback — preferred via server headers) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
+    <!-- SEO -->
+    <meta name="robots" content="index, follow" />
     <meta
       name="description"
       content="yasas.io — AI systems for service businesses. Voice agents that answer calls, WhatsApp automation, lead capture and CRM that turn messages into clients."
     />
+    <link rel="canonical" href="https://yasas.io/" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="yasas.io — AI systems that turn messages into clients" />
     <meta property="og:description" content="Voice agents, WhatsApp automation, AI chat systems and CRM for service businesses." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yasas.io/" />
+
     <title>yasas.io — AI systems that turn messages into clients</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="/assets/ai-background.png" fetchpriority="high" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>

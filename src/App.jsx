@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, Suspense } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // ThreeScene removed — using image background
 import {
   motion,
@@ -679,11 +679,14 @@ function AnimatedBackground() {
         className="absolute inset-0"
         animate={{ scale: [1, 1.04, 1], x: [0, -12, 0] }}
         transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: "transform" }}
       >
         <img
           src="/assets/ai-background.png"
           alt=""
           aria-hidden="true"
+          fetchpriority="high"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </motion.div>
@@ -1307,78 +1310,75 @@ function ChatShowcasePanel() {
 function AIAvatarCore() {
   return (
     <div className="relative flex flex-col items-center">
-      {/* Ambient glow behind image */}
-      <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_50%_60%,rgba(123,92,255,.35),transparent_65%)] blur-2xl" />
-      <div className="absolute -inset-4 rounded-3xl bg-[radial-gradient(ellipse_at_50%_70%,rgba(255,90,77,.18),transparent_60%)] blur-3xl" />
+      {/* Deep glow layers behind the figure */}
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[420px] w-[320px] -translate-x-1/2 rounded-full bg-[#7B5CFF]/20 blur-[80px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[220px] -translate-x-1/2 rounded-full bg-[#FF5A4D]/12 blur-[60px]" />
 
-      {/* Receptionist image */}
+      {/* Floating receptionist figure */}
       <motion.div
-        animate={{ y: [0, -8, 0] }}
+        animate={{ y: [0, -10, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         className="relative"
       >
-        <div className="relative w-[260px] overflow-hidden sm:w-[300px]">
-          <img
-            src="/assets/ai-receptionist.png"
-            alt="ARIA — AI Receptionist"
-            className="relative z-10 h-full w-full object-cover object-top"
-            style={{ maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)" }}
-          />
-          {/* Side fades */}
-          <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-[#04050f]/70 via-transparent to-[#04050f]/70" />
-        </div>
+        <img
+          src="/assets/recepcionista3.png"
+          alt="ARIA — AI Receptionist"
+          loading="lazy"
+          decoding="async"
+          className="relative z-10 w-[260px] sm:w-[300px] drop-shadow-[0_0_40px_rgba(123,92,255,0.5)]"
+        />
 
-        {/* Floating status badge */}
+        {/* Live badge — top right */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5 }}
-          className="absolute -right-4 top-8 z-30 flex items-center gap-2 rounded-2xl border border-white/15 bg-[#0a1628]/90 px-3 py-2 shadow-xl backdrop-blur-xl"
+          initial={{ opacity: 0, scale: 0.8, x: 10 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ delay: 0.5, type: "spring" }}
+          className="absolute -right-6 top-10 z-20 flex items-center gap-2 rounded-2xl border border-white/15 bg-[#060d1a]/90 px-3 py-2 shadow-2xl backdrop-blur-xl"
         >
           <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
           </span>
-          <span className="text-[11px] font-semibold text-emerald-400">Live · Handling calls</span>
+          <span className="whitespace-nowrap text-[11px] font-semibold text-emerald-400">Live · On call</span>
         </motion.div>
 
-        {/* Waveform badge */}
+        {/* Waveform badge — top left */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8 }}
-          className="absolute -left-6 top-20 z-30 flex items-center gap-2 rounded-2xl border border-[#7B5CFF]/30 bg-[#0a1628]/90 px-3 py-2 shadow-xl backdrop-blur-xl"
+          initial={{ opacity: 0, scale: 0.8, x: -10 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ delay: 0.8, type: "spring" }}
+          className="absolute -left-8 top-24 z-20 flex items-center gap-2 rounded-2xl border border-[#7B5CFF]/30 bg-[#060d1a]/90 px-3 py-2 shadow-2xl backdrop-blur-xl"
         >
-          <PhoneCall className="h-3 w-3 text-[#FF5A4D]" />
+          <PhoneCall className="h-3 w-3 shrink-0 text-[#FF5A4D]" />
           <div className="flex items-end gap-[2px]">
-            {[3,5,7,4,6,8,5,3,6,4].map((h, i) => (
+            {[3, 6, 9, 5, 8, 11, 6, 4, 7, 5].map((h, i) => (
               <motion.div
                 key={i}
                 className="w-[2px] rounded-full bg-[#7B5CFF]"
-                animate={{ height: [`${h}px`, `${h * 2}px`, `${h}px`] }}
-                transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.07 }}
+                animate={{ height: [`${h}px`, `${h * 1.8}px`, `${h}px`] }}
+                transition={{ duration: 0.55, repeat: Infinity, delay: i * 0.06, ease: "easeInOut" }}
               />
             ))}
           </div>
         </motion.div>
       </motion.div>
 
-      {/* Name + status */}
-      <div className="relative z-10 -mt-6 text-center">
-        <p className="text-lg font-black tracking-wide text-white drop-shadow-lg">ARIA</p>
-        <p className="text-xs text-white/50">AI Receptionist · yasas.io</p>
-        <div className="mt-2 flex items-center justify-center gap-1.5">
+      {/* ARIA label */}
+      <div className="relative z-10 mt-3 text-center">
+        <p className="text-lg font-black tracking-wide text-white">ARIA</p>
+        <p className="text-xs text-white/45">AI Receptionist · yasas.io</p>
+        <div className="mt-1.5 flex items-center justify-center gap-1.5">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#4ade80]" />
           <span className="text-[10px] font-semibold text-emerald-400">Online 24/7</span>
         </div>
       </div>
 
-      {/* Bottom action bar */}
+      {/* Action bar */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="relative z-10 mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#0a1628]/80 px-4 py-3 backdrop-blur-xl"
+        className="relative z-10 mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#060d1a]/80 px-4 py-3 backdrop-blur-xl"
       >
         {[
           { Icon: PhoneCall,     color: "#FF5A4D" },
@@ -1390,7 +1390,7 @@ function AIAvatarCore() {
           <motion.div
             key={i}
             whileHover={{ scale: 1.15 }}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.05] cursor-pointer"
+            className="grid h-10 w-10 cursor-pointer place-items-center rounded-xl border border-white/10 bg-white/[0.05]"
             style={{ color }}
           >
             <Icon className="h-4 w-4" />
@@ -1665,6 +1665,7 @@ function Chatbot({ t }) {
               </div>
               <form onSubmit={(e) => { e.preventDefault(); handleUser(input); }} className="flex gap-2">
                 <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={t.chat.input}
+                  maxLength={400} autoComplete="off" spellCheck="false"
                   className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#7B5CFF]" />
                 <button type="submit" className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#7B5CFF] text-white transition hover:bg-[#6b4df0]">
                   <Send className="h-4 w-4" />
