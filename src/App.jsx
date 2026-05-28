@@ -673,33 +673,35 @@ function AnimatedBackground() {
   }, [mouseX, mouseY]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#09091f]">
-
-      {/* ── Grid — clearly visible like in the reference ── */}
+    <div
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      style={{ background: "radial-gradient(ellipse 120% 80% at 0% 0%, #1a1060 0%, #0e0b2e 40%, #080720 100%)" }}
+    >
+      {/* ── Grid — visible lines, matches reference ── */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,255,255,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }}
       />
 
-      {/* ── Big purple spotlight top-left ── */}
-      <div className="absolute -left-[15%] -top-[20%] h-[90vh] w-[70vw] rounded-full bg-[#3b1ca8]/50 blur-[130px]" />
-      <div className="absolute left-[0%] top-[5%] h-[60vh] w-[50vw] rounded-full bg-[#6b3fff]/28 blur-[100px]" />
+      {/* ── Purple spotlight top-left — dominant glow ── */}
+      <div style={{ position:"absolute", left:"-10%", top:"-15%", width:"65vw", height:"85vh", borderRadius:"50%", background:"rgba(90,40,220,0.45)", filter:"blur(120px)" }} />
+      <div style={{ position:"absolute", left:"5%", top:"15%", width:"45vw", height:"55vh", borderRadius:"50%", background:"rgba(123,92,255,0.30)", filter:"blur(90px)" }} />
 
-      {/* ── Orange/red accent bottom-right ── */}
-      <div className="absolute right-[-8%] bottom-[5%] h-[40vh] w-[35vw] rounded-full bg-[#FF5A4D]/12 blur-[110px]" />
+      {/* ── Orange accent right ── */}
+      <div style={{ position:"absolute", right:"-5%", bottom:"5%", width:"35vw", height:"40vh", borderRadius:"50%", background:"rgba(255,90,77,0.13)", filter:"blur(110px)" }} />
 
-      {/* ── Animated mouse-parallax orbs ── */}
+      {/* ── Mouse parallax orbs ── */}
       <motion.div
-        className="absolute left-[-6rem] top-10 h-[24rem] w-[24rem] rounded-full bg-[#7B5CFF]/18 blur-3xl"
-        style={{ x: orb1X, y: orb1Y }}
+        className="absolute left-[-6rem] top-10 h-[24rem] w-[24rem] rounded-full blur-3xl"
+        style={{ x: orb1X, y: orb1Y, background: "rgba(123,92,255,0.22)" }}
       />
       <motion.div
-        className="absolute right-0 bottom-20 h-[20rem] w-[20rem] rounded-full bg-[#FF5A4D]/10 blur-3xl"
-        style={{ x: orb2X, y: orb2Y }}
+        className="absolute right-0 bottom-20 h-[20rem] w-[20rem] rounded-full blur-3xl"
+        style={{ x: orb2X, y: orb2Y, background: "rgba(255,90,77,0.12)" }}
       />
     </div>
   );
