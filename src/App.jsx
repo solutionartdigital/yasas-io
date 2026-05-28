@@ -673,10 +673,24 @@ function AnimatedBackground() {
   }, [mouseX, mouseY]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#04050f]">
-      {/* ── Main background: animated fiber-optic streams image ── */}
-      <motion.div
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#060818]">
+
+      {/* ── Grid — visible, anchors the tech feel ── */}
+      <div
         className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(123,92,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,92,255,0.18) 1px, transparent 1px)",
+          backgroundSize: "55px 55px",
+        }}
+      />
+
+      {/* ── Strong brand radial glows ── */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_10%_20%,rgba(123,92,255,.35),transparent_60%),radial-gradient(ellipse_60%_50%_at_90%_80%,rgba(255,90,77,.22),transparent_55%),radial-gradient(ellipse_50%_40%_at_50%_50%,rgba(255,176,32,.08),transparent_60%)]" />
+
+      {/* ── Background image — subtle, blended over the grid ── */}
+      <motion.div
+        className="absolute inset-0 opacity-30 mix-blend-screen"
         animate={{ scale: [1, 1.04, 1], x: [0, -12, 0] }}
         transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
         style={{ willChange: "transform" }}
@@ -691,25 +705,12 @@ function AnimatedBackground() {
         />
       </motion.div>
 
-      {/* ── Dark vignette — lighter so the image breathes ── */}
-      <div className="absolute inset-0 bg-[#04050f]/38" />
-
-      {/* ── Subtle grid overlay ── */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(180,160,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(180,160,255,1) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
-
-      {/* ── Brand color radial gradients (stronger than before) ── */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_18%,rgba(123,92,255,.28),transparent_42%),radial-gradient(ellipse_at_82%_72%,rgba(255,90,77,.18),transparent_38%),radial-gradient(ellipse_at_50%_50%,rgba(255,176,32,.07),transparent_55%)]" />
+      {/* ── Vignette edges so el contenido central resalta ── */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_50%,transparent_40%,rgba(6,8,24,0.7)_100%)]" />
 
       {/* ── Animated orbs ── */}
       <motion.div
-        className="absolute -left-20 top-20 h-[28rem] w-[28rem] rounded-full bg-[#7B5CFF]/22 blur-3xl"
+        className="absolute -left-20 top-20 h-[32rem] w-[32rem] rounded-full bg-[#7B5CFF]/25 blur-3xl"
         style={{ x: orb1X, y: orb1Y }}
       />
       <motion.div
