@@ -673,48 +673,32 @@ function AnimatedBackground() {
   }, [mouseX, mouseY]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#060818]">
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#09091f]">
 
-      {/* ── Grid — visible, anchors the tech feel ── */}
+      {/* ── Grid — clearly visible like in the reference ── */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(123,92,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,92,255,0.18) 1px, transparent 1px)",
-          backgroundSize: "55px 55px",
+            "linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
         }}
       />
 
-      {/* ── Strong brand radial glows ── */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_10%_20%,rgba(123,92,255,.35),transparent_60%),radial-gradient(ellipse_60%_50%_at_90%_80%,rgba(255,90,77,.22),transparent_55%),radial-gradient(ellipse_50%_40%_at_50%_50%,rgba(255,176,32,.08),transparent_60%)]" />
+      {/* ── Big purple spotlight top-left ── */}
+      <div className="absolute -left-[15%] -top-[20%] h-[90vh] w-[70vw] rounded-full bg-[#3b1ca8]/50 blur-[130px]" />
+      <div className="absolute left-[0%] top-[5%] h-[60vh] w-[50vw] rounded-full bg-[#6b3fff]/28 blur-[100px]" />
 
-      {/* ── Background image — subtle, blended over the grid ── */}
+      {/* ── Orange/red accent bottom-right ── */}
+      <div className="absolute right-[-8%] bottom-[5%] h-[40vh] w-[35vw] rounded-full bg-[#FF5A4D]/12 blur-[110px]" />
+
+      {/* ── Animated mouse-parallax orbs ── */}
       <motion.div
-        className="absolute inset-0 opacity-30 mix-blend-screen"
-        animate={{ scale: [1, 1.04, 1], x: [0, -12, 0] }}
-        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-        style={{ willChange: "transform" }}
-      >
-        <img
-          src="/assets/ai-background.png"
-          alt=""
-          aria-hidden="true"
-          fetchpriority="high"
-          decoding="async"
-          className="h-full w-full object-cover"
-        />
-      </motion.div>
-
-      {/* ── Vignette edges so el contenido central resalta ── */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_50%,transparent_40%,rgba(6,8,24,0.7)_100%)]" />
-
-      {/* ── Animated orbs ── */}
-      <motion.div
-        className="absolute -left-20 top-20 h-[32rem] w-[32rem] rounded-full bg-[#7B5CFF]/25 blur-3xl"
+        className="absolute left-[-6rem] top-10 h-[24rem] w-[24rem] rounded-full bg-[#7B5CFF]/18 blur-3xl"
         style={{ x: orb1X, y: orb1Y }}
       />
       <motion.div
-        className="absolute right-0 top-36 h-[32rem] w-[32rem] rounded-full bg-[#FF5A4D]/14 blur-3xl"
+        className="absolute right-0 bottom-20 h-[20rem] w-[20rem] rounded-full bg-[#FF5A4D]/10 blur-3xl"
         style={{ x: orb2X, y: orb2Y }}
       />
     </div>
