@@ -1716,7 +1716,7 @@ export default function YasasLandingPage() {
   const hrefs = ["#solutions", "#how", "#results", "#pricing", "#faq"];
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#050b14] font-sans text-white selection:bg-[#FF5A4D]/40">
+    <div className="min-h-screen overflow-x-hidden bg-transparent font-sans text-white selection:bg-[#FF5A4D]/40">
       <ScrollProgress />
       <CursorGlow />
       {/* Image background overlay for readability */}
