@@ -156,6 +156,9 @@ const copy = {
       realEstate: "For real estate: our AI chat qualifies buyer and seller leads (location, budget, timeline), books property tours and auto-follows up on inactive leads. WhatsApp flows nurture prospects through long sales cycles. Voice agents answer listing inquiries at any hour — so no lead goes cold.",
       legal: "For law firms: AI chat qualifies potential clients (area of law, case type, urgency), collects initial info and books consultations — while screening out non-qualified inquiries. Voice agents handle after-hours calls professionally. WhatsApp follow-ups keep prospects engaged while they decide.",
       fallback: "Good question. yasas.io helps businesses stop losing leads by responding faster and following up automatically. Want to know about a specific service — chatbots, WhatsApp, voice agents? Or book a free audit?",
+      greeting: "Hey! Welcome to yasas.io — I'm ARIA, your AI assistant. I can walk you through our chatbots, WhatsApp automations, AI voice agents and CRM systems, or book you a free AI audit. What would you like to explore?",
+      thanks: "Anytime! Want me to show how we'd automate your business, or set up your free AI audit? I'm here whenever you need.",
+      bye: "Thanks for stopping by! Whenever you're ready to capture more leads on autopilot, yasas.io is here 24/7. Have a great day.",
       missing: "Please fill in all fields so we can confirm your audit slot.",
       done: "Done — your audit request is ready. In production this is sent to your email and CRM, and synced with Calendly or Google Calendar for instant scheduling.",
       phonePlaceholder: "Phone number",
@@ -315,6 +318,9 @@ const copy = {
       realEstate: "Para inmobiliarias: el chat IA califica leads de compra y venta (zona, presupuesto, plazo), agenda tours y da seguimiento automático a leads inactivos. WhatsApp nutre prospectos en ciclos de venta largos. Los agentes de voz atienden consultas sobre propiedades a cualquier hora.",
       legal: "Para despachos legales: el chat IA califica clientes potenciales (área legal, tipo de caso, urgencia), recopila información inicial y agenda consultas — filtrando consultas no calificadas. Los agentes de voz atienden llamadas fuera de horario de forma profesional.",
       fallback: "Buena pregunta. yasas.io ayuda a dejar de perder leads respondiendo más rápido y dando seguimiento automático. ¿Quieres saber más sobre chatbots, WhatsApp, agentes de voz? ¿O prefieres agendar una auditoría gratis?",
+      greeting: "¡Hola! Bienvenido a yasas.io — soy ARIA, tu asistente de IA. Puedo contarte sobre nuestros chatbots, automatizaciones de WhatsApp, agentes de voz y sistemas CRM, o agendarte una auditoría de IA gratis. ¿Qué te gustaría ver?",
+      thanks: "¡Con gusto! ¿Quieres que te muestre cómo automatizaríamos tu negocio o te agendo tu auditoría de IA gratis? Aquí estoy cuando me necesites.",
+      bye: "¡Gracias por pasar! Cuando quieras captar más clientes en automático, yasas.io está aquí 24/7. ¡Que tengas un gran día!",
       missing: "Por favor completa todos los campos para confirmar tu horario de auditoría.",
       done: "Listo — tu solicitud quedó registrada. En producción se envía a tu email y CRM, y se sincroniza con Calendly o Google Calendar para confirmar de inmediato.",
       phonePlaceholder: "Número de teléfono",
@@ -1499,6 +1505,29 @@ function Chatbot({ t }) {
     setInput("");
     const s = t.chat;
     const q = clean.toLowerCase();
+    const words = q.replace(/[^\p{L}\s]/gu, "").split(/\s+/).filter(Boolean);
+    const firstWord = words[0] || "";
+
+    // Greeting — word-level so it won't fire on "this", "hiring", etc.
+    const isGreeting =
+      ["hi", "hello", "hey", "hiya", "yo", "hola", "buenas", "ola", "holi"].includes(firstWord) ||
+      /^h+o+l+a+$/.test(firstWord) ||
+      /\bgood (morning|afternoon|evening)\b/.test(q) ||
+      /\bbuen[oa]s? (d[ií]as|tardes|noches)\b/.test(q);
+    if (words.length <= 5 && isGreeting) { botReply(s.greeting, s.quick); return; }
+
+    // Thanks
+    if (/\b(thanks|thank you|thank u|thank|thx|gracias)\b/.test(q)) { botReply(s.thanks, s.quick); return; }
+
+    // Goodbye
+    if (/\b(bye|goodbye|see ya|adios|adiós|chao|chau)\b/.test(q) || ["hasta", "nos"].includes(firstWord)) {
+      botReply(s.bye); return;
+    }
+
+    // Bare affirmation → move toward the free audit (primary CTA)
+    if (["yes", "yeah", "yep", "yup", "sure", "ok", "okay", "sounds good", "let's do it", "si", "sí", "claro", "dale", "vale", "perfecto", "de acuerdo"].includes(q)) {
+      setStep("booking"); botReply(s.booking); return;
+    }
 
     if (q.includes("book") || q.includes("audit") || q.includes("schedule") || q.includes("demo") ||
         q.includes("cita") || q.includes("agendar") || q.includes("auditoría") || q.includes("auditoria")) {
